@@ -1,6 +1,6 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-05-21  
+> 마지막 업데이트: 2026-05-25  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
@@ -31,6 +31,24 @@
 - **Multiagent Sessions** + **Outcomes** public beta (`managed-agents-2026-04-01`)
 - Managed Agents Vault `mcp_oauth` 백그라운드 자격증명 갱신
 - Managed Agents Webhooks — 세션·볼트 라이프사이클 이벤트
+
+### Claude Code CLI (2026-05-25 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.150** | 내부 인프라 개선 (사용자 가시 변경 없음) |
+| **v2.1.149** | `/usage` 카테고리별 한도 세분화; `/diff` 키보드 스크롤; GFM 체크박스 렌더링; Enterprise `allowAllClaudeAiMcps`; PowerShell `cd` 함수 우회 버그 수정; 다수 버그 수정 |
+| **v2.1.148** | Bash 툴 exit 127 회귀 버그 수정 (2.1.147 도입) |
+| **v2.1.147** | `/simplify` → `/code-review` 개명 (정확성 레벨 지정, `--comment`로 GitHub PR 인라인 댓글); 백그라운드 세션 핀 고정(`Ctrl+T`); 자동 업데이터 재시도·오류 코드 개선 |
+| **v2.1.145** | `claude agents --json` 추가; OTEL 스팬 `agent_id`/`parent_agent_id`; Stop/SubagentStop 훅에 `background_tasks`·`session_crons` 필드; `/plugin` 설치 전 상세 미리 보기 |
+| **v2.1.144** | `/resume` 백그라운드 세션 지원; `/model` 현재 세션만 변경(`d`로 기본값); 스타트업 타임아웃 75s → 15s |
+| **v2.1.143** | 플러그인 의존성 강제(비활성화 체인 확인); `worktree.bgIsolation: "none"` 설정; PowerShell 기본 `-ExecutionPolicy Bypass` |
+| **v2.1.142** | Fast Mode 기본 모델 Opus 4.6 → Opus 4.7 변경; `claude agents` 신규 플래그(`--add-dir`, `--settings`, `--mcp-config`, `--plugin-dir` 등) |
+| **v2.1.141** | 훅 JSON `terminalSequence` 필드(데스크탑 알림·타이틀·벨); `claude agents --cwd`; `/feedback` 이전 세션 포함; Rewind "여기까지 요약"; 스피너 10s 경과 시 황색 |
+| **v2.1.140** | Agent tool `subagent_type` 대소문자·구분자 무관 매칭; 에이전트 색상 팔레트 업데이트 |
+| **v2.1.139** | **에이전트 뷰 Research Preview** (`claude agents` — 모든 세션 단일 목록); `/goal` 명령(완료 조건 기반 자동 반복); `claude plugin details <name>` |
 
 ---
 
