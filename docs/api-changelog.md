@@ -1,7 +1,40 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-05-25  
+> 마지막 업데이트: 2026-06-15  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
+
+---
+
+## 2026년 6월
+
+### 2026-06-15
+- **Claude Sonnet 4 (`claude-sonnet-4-20250514`) 공식 은퇴** — 2026-04-14 예고 기준 예정대로 지원 종료
+- **Claude Opus 4 (`claude-opus-4-20250514`) 공식 은퇴** — 동일 일정으로 지원 종료
+
+### Claude Code CLI (2026-06-15 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.176** | 세션 제목 대화 언어 자동 생성; `footerLinksRegexes` 설정; Bedrock 자격증명 캐싱 개선; hook `if` 경로 패턴 수정; Remote Control 다수 버그 수정 |
+| **v2.1.175** | `enforceAvailableModels` 관리형 설정 — `availableModels` 허용 목록이 Default 모델도 제한 |
+| **v2.1.174** | `wheelScrollAccelerationEnabled` 설정; `/model` 피커 Fable 5·Opus 별도 행 표시; VSCode Usage 대화상자 세분화; Bedrock GovCloud 리전 수정 |
+| **v2.1.173** | Fable 5 모델 ID의 `[1m]` 접미사 자동 제거 (기본 1M 컨텍스트이므로 불필요) |
+| **v2.1.172** | 서브에이전트 5단계 재귀 지원; Bedrock `~/.aws` 설정 리전 자동 읽기; 플러그인 검색 바; WebFetch 도메인 와일드카드 규칙 수정 |
+| **v2.1.170** | **Claude Fable 5 출시** — Mythos-class, 역대 일반 공개 최고 성능; `https://www.anthropic.com/news/claude-fable-5-mythos-5` |
+| **v2.1.169** | `--safe-mode` 플래그 (모든 커스터마이제이션 비활성화); `/cd` 명령 (캐시 유지 디렉토리 이동); `disableBundledSkills` 설정; 자체 호스팅 `post-session` 훅 |
+| **v2.1.168** | 버그 수정 및 안정성 개선 |
+| **v2.1.167** | 버그 수정 및 안정성 개선 |
+| **v2.1.166** | `fallbackModel` 설정(최대 3개 순차 폴백); 부정 규칙 글로브 패턴 지원(`"*"` → 모든 툴 차단); 교차 세션 메시지 권한 보안 강화; `MAX_THINKING_TOKENS=0` 지원 |
+| **v2.1.165** | 버그 수정 및 안정성 개선 |
+| **v2.1.163** | `requiredMinimumVersion`/`requiredMaximumVersion` 관리형 설정; `/plugin list` 명령; Stop/SubagentStop 훅 `additionalContext` 반환 지원 |
+| **v2.1.162** | `claude agents --json` `waitingFor` 필드; Remote Control 풋터 고정 알약 표시; Windsurf → Devin Desktop 리브랜드 반영 |
+| **v2.1.161** | `OTEL_RESOURCE_ATTRIBUTES` 값을 메트릭 레이블로 포함; 병렬 툴 호출 실패 시 독립 결과 반환 |
+| **v2.1.160** | 쉘 스타트업 파일 쓰기 전 확인 프롬프트; 동적 워크플로우 키워드 `workflow` → `ultracode` 변경 |
+| **v2.1.159** | 내부 인프라 개선 (사용자 가시 변경 없음) |
+| **v2.1.158** | Bedrock·Vertex·Foundry Auto Mode — Opus 4.7·Opus 4.8 대상 (`CLAUDE_CODE_ENABLE_AUTO_MODE=1`) |
+| **v2.1.157** | `.claude/skills` 플러그인 자동 로드 (마켓플레이스 불필요); `claude plugin init <name>` 스캐폴딩; `EnterWorktree` 세션 간 전환 지원 |
 
 ---
 
