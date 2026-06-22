@@ -1,6 +1,6 @@
 # Claude 모델 레퍼런스
 
-> 마지막 업데이트: 2026-06-15  
+> 마지막 업데이트: 2026-06-22  
 > 소스: https://platform.claude.com/docs/en/about-claude/models/overview
 
 ---

@@ -1,11 +1,23 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-06-15  
+> 마지막 업데이트: 2026-06-22  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 6월
+
+### Claude Code CLI (2026-06-22 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.185** | 스트림 스톨 힌트 문구 개선 ("Waiting for API response · will retry in …"), 트리거 타임아웃 10s → 20s |
+| **v2.1.183** | Auto Mode 안전성 강화(파괴적 git 명령 자동 차단·amend 제한·terraform/pulumi/cdk destroy 차단); 사용 중단 모델 경고 추가; `attribution.sessionUrl` 설정; `/config --help`; 다수 버그 수정 |
+| **v2.1.181** | `/config key=value` 프롬프트 내 설정 직접 변경; `sandbox.allowAppleEvents` 설정(macOS); `CLAUDE_CLIENT_PRESENCE_FILE` 모바일 알림 억제; Bun 1.4 업그레이드; 프롬프트 캐싱 Foundry 수정; 다수 버그 수정 |
+| **v2.1.179** | 미드스트림 연결 끊김 시 부분 응답 보존; WSL2 마우스 휠 수정(2.1.172 회귀); 서브에이전트 트랜스크립트 표시 수정; 다수 버그 수정 |
+| **v2.1.178** | 에이전트 팀 단순화(`TeamCreate`/`TeamDelete` 제거 → 암묵적 팀); `Tool(param:value)` 권한 규칙 구문; 중첩 `.claude/skills` 네임스페이스(`<dir>:<name>`); Auto Mode 서브에이전트 사전 분류; `/bug` 설명 필수화; 다수 버그 수정 |
 
 ### 2026-06-15
 - **Claude Sonnet 4 (`claude-sonnet-4-20250514`) 공식 은퇴** — 2026-04-14 예고 기준 예정대로 지원 종료
