@@ -1,11 +1,33 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-06-22  
+> 마지막 업데이트: 2026-06-29  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 6월
+
+### Claude Code CLI (2026-06-29 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.195** | `CLAUDE_CODE_DISABLE_MOUSE_CLICKS` 설정(전체화면 마우스 클릭·드래그 비활성화); 하이픈 포함 훅 매처 정확한 매칭 수정(기존 서브스트링 매칭 → 정확한 일치, 와일드카드는 `mcp__brave-search__.*` 사용); voice 딕테이션 공백 없는 언어(일본어·중국어·태국어) 자동 제출 수정; 플러그인 설치 동의 경로 강화; 백그라운드 에이전트 소켓·재시작·영구 stop 다수 수정 |
+| **v2.1.193** | `autoMode.classifyAllShell` 설정(모든 Bash/PowerShell 자동분류); Auto Mode 거부 사유 트랜스크립트·토스트·`/permissions` 기록; `claude_code.assistant_response` OpenTelemetry 로그 이벤트(`OTEL_LOG_ASSISTANT_RESPONSES=0`으로 비활성화); bash 모드(`!`) 파일경로 라이브 자동완성; MCP 인증 필요 서버 시작 알림; 백그라운드 쉘 아이들 메모리 압박 자동 해제 |
+| **v2.1.191** | `/rewind` 명령으로 `/clear` 이전 대화 복원; 스트리밍 중 스크롤 위치 점프 수정; 백그라운드 에이전트 stop 후 재생성 버그 영구 수정; MCP OAuth 재시도·에러메시지·헤더 헬퍼 재인증 개선; CPU 사용량 ~37% 절감(텍스트 업데이트 100ms 코얼레싱) |
+| **v2.1.190** | 버그 수정 및 안정성 개선 |
+| **v2.1.187** | `sandbox.credentials` 설정(자격증명 파일·비밀 환경변수 샌드박스 차단); 조직 모델 제한을 피커·`--model`·`/model`·`ANTHROPIC_MODEL`에 반영; `--json-schema`·Workflow `agent({schema})` 구조화 출력 무한 재호출 수정; 원격 MCP 5분 무응답 시 오류 반환(`CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT`으로 조정 가능) |
+| **v2.1.186** | `claude mcp login/logout <name>` CLI 인증(SSH `--no-browser` 지원); `/workflows` 상태 필터(`f` 키); `/plugin` 설치 탭 Skills 섹션 추가; `teammateMode: "iterm2"` 설정; `!` bash 출력 자동 응답 기본 활성화(`respondToBashCommands: false`로 비활성화 가능); 마켓플레이스 `renames` 맵 자동 적용 |
+
+### 2026-06-26
+- **API Rate Limits 대폭 인상** — Claude Sonnet·Haiku 요율 한도를 Claude Opus 수준으로 통일. 사용 티어 Start·Build·Scale 3단계로 통합. 기존 대비 하향 없음, 별도 조치 불필요. Console `/settings/limits`에서 확인 가능
+
+### 2026-06-25
+- **Fast Mode: Opus 4.7 지원 종료 예고** — 2026-07-24 완전 제거 예정. 이후 `claude-opus-4-7` + `speed: "fast"` 요청 시 오류 반환. **Opus 4.8 Fast Mode로 마이그레이션 필요**
+
+### 2026-06-18
+- **SDK 업데이트** (Python·TypeScript·Go·Java·Ruby·PHP·C#): `code_execution_20260120` 코드 실행 툴 타입 지원 추가 — REPL 상태 지속 + 프로그래밍 툴 호출 최소 버전. 베타 헤더 불필요. Fable 5·Mythos 5·Opus 4.5+·Sonnet 4.5+ 지원
 
 ### Claude Code CLI (2026-06-22 싱크 기준 최신 버전)
 
