@@ -1,11 +1,34 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-06-29  
+> 마지막 업데이트: 2026-07-06  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
+## 2026년 7월
+
+### 2026-07-01
+- **Claude Fable 5·Claude Mythos 5 접근 복구** — 서비스 중단 이후 재배포 완료. [Anthropic 성명](https://www.anthropic.com/news/redeploying-fable-5-mythos-5) 참고
+
+### Claude Code CLI (2026-07-06 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.201** | Claude Sonnet 5 세션 미드-대화 시스템 역할 하네스 리마인더 제거 |
+| **v2.1.200** | `AskUserQuestion` 대화 자동 진행 기본 비활성화(→ `/config`에서 옵트인); 기본 권한 모드 `"default"` → `"manual"` 전환(CLI·VS Code·JetBrains 전체); 백그라운드 에이전트 데몬 핸드오버·스레드 복수 버그 수정; 스크린 리더 출력 개선 |
+| **v2.1.199** | `/skill-a /skill-b` 중첩 슬래시 스킬 최대 5개 동시 로드; TLS 검사 프록시·SSL 오류 즉시 실패(리트라이 낭비 방지); 부분 응답 미드스트림 오버로드 보존; 백그라운드 에이전트 Linux 데몬 50초 자살 버그 수정 등 다수 |
+| **v2.1.198** | 서브에이전트 백그라운드 기본 실행(GA); **Claude in Chrome** 일반 공개; 백그라운드 에이전트 알림 훅 (`agent_needs_input`/`agent_completed`); `/dataviz` 내장 스킬 추가; Gateway에 Claude Platform on AWS 업스트림 추가; 탐색(Explore) 에이전트 모델 Haiku → Opus 상속 |
+| **v2.1.197** | **Claude Sonnet 5** Claude Code 기본 모델로 설정; 1M 컨텍스트 네이티브 지원; 프로모션 가격 $2/$10/MTok (2026-08-31까지) |
+| **v2.1.196** | 조직 기본 모델 지원(관리자가 Console에서 설정); 세션 시작 시 읽기 쉬운 기본 이름 생성; 채팅 파일 첨부 클릭 공개(Finder/Explorer); `claude mcp list/get` 비승인 워크스페이스 서버 노출 보안 수정 |
+
+---
+
 ## 2026년 6월
+
+### 2026-06-30
+- **Claude Sonnet 5** (`claude-sonnet-5`) 출시 — 소개 가격 $2/$10/MTok (2026-08-31까지, 이후 $3/$15). 1M 컨텍스트, 128k 최대 출력. Adaptive Thinking 기본 활성화. 수동 Extended Thinking 제거(→ 400 오류). `temperature`/`top_p`/`top_k` 비기본값 설정 시 400 오류. 신규 토크나이저(동일 텍스트 대비 약 30% 더 많은 토큰 생성). Priority Tier 미지원.
 
 ### Claude Code CLI (2026-06-29 싱크 기준 최신 버전)
 
