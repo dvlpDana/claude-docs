@@ -7,15 +7,30 @@
 
 ## 2026년 7월
 
+### 2026-07-10
+- **Access Transparency 문서 확장** — `cmek_preserve` 이벤트에 필터 예시·이벤트 페이로드·보존 사유 코드 2개(`policy_violation_investigation`, `csae_report`) 추가. 보존 이벤트는 사람 검토자·자동 안전 파이프라인 어느 쪽에서 시작하든 기록됨을 명시.
+
+### 2026-07-08
+- **API 키 만료일 설정 지원** — Console에서 API 키·Admin API 키 생성 시 만료 기간 지정 가능(사전 설정·커스텀·무기한). 7일 이상 키는 만료 전 이메일 알림. Admin API `expires_at` 필드로 조회. 기존 키 영향 없음.
+
+### 2026-07-02
+- **`agent-memory-2026-07-22` 베타 헤더 추가** — 메모리 조회(`GET /v1/memory_stores/{id}/memories`) 동작 변경: 안정적 서버 정렬 순서, `depth` 0·1·미제공만 허용, `path_prefix` 경로 세그먼트 완전 일치. 기존 커서 재사용 불가(첫 페이지부터 재시작 필요). 2026-07-22부터 `managed-agents-2026-04-01` 헤더도 동일 동작 적용; 양 헤더 동시 사용 시 400 오류. SDK 일괄 업데이트(Python 0.116.0, TS 0.110.0, Go 1.56.0, Java 2.48.0, Ruby 1.55.0, PHP 0.36.0, C# 12.35.0, CLI 1.16.0).
+
 ### 2026-07-01
 - **Claude Fable 5·Claude Mythos 5 접근 복구** — 서비스 중단 이후 재배포 완료. [Anthropic 성명](https://www.anthropic.com/news/redeploying-fable-5-mythos-5) 참고
 
-### Claude Code CLI (2026-07-06 싱크 기준 최신 버전)
+### Claude Code CLI (2026-07-13 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.207** | Auto Mode Bedrock·Vertex·Foundry GA(`disableAutoMode` 설정으로 비활성화); 긴 목록·표 스트리밍 중 터미널 프리즈·키 지연 수정; 비대화형 실행 시 원격 관리 설정 미동의 자동 기록 수정; 플러그인 훅 `${user_config.*}` 쉘 인젝션 차단(exec 형식 사용 권고); 플러그인 옵션 프로젝트 `.claude/settings.json` 읽기 금지(사용자·관리·`--settings` 설정만 허용); `/usage-credits` 잘못된 금액 입력 거부·$1,000 초과 시 타이핑 확인 등 다수 수정 |
+| **v2.1.206** | `/cd` 디렉토리 경로 제안; `/doctor` 불필요 CLAUDE.md 콘텐츠 정리 제안; `/commit-push-pr` 설정된 push 원격지 자동 허용; Gateway `/login` 공개 게이트웨이 지원; `EnterWorktree` 프로젝트 외부 워크트리 진입 시 확인 프롬프트; 배경 에이전트 버전 업데이트 세션 어태치 전 사전 처리; 다수 버그 수정 |
+| **v2.1.205** | Auto Mode 세션 트랜스크립트 파일 변조 차단 규칙 추가; `--json-schema` 유효하지 않은 스키마 미구조화 출력 방지; max-turns 한도 도달 시 미전송 메시지 유실 수정; Windows 워크트리 삭제 시 NTFS 정션 외부 파일 삭제 방지; 서브에이전트 `SendMessage` 재개 후 실패/완료 상태 유지 수정 등 다수 |
+| **v2.1.204** | SessionStart 훅 실행 중 비대화형 세션 훅 이벤트 스트리밍 미전송 수정 (원격 워커 유휴 회수 방지) |
+| **v2.1.203** | 로그인 만료 전 경고 추가; 수동 권한 모드 시 푸터 회색 ⏸ 배지 표시; MCP `roots/list` 추가 작업 디렉토리 포함; macOS 저메모리 오탐으로 인한 배경 에이전트 세션 전환 15-20초 지연 수정; 배경 에이전트 데몬 토큰 만료 시 자동 복구; 컨텍스트 사용량 지표 매 턴 전체 분석 CPU·메모리 회귀 수정 등 다수 |
+| **v2.1.202** | `/config` 동적 워크플로우 크기 설정(small/medium/large 에이전트 수 지침); 워크플로우 에이전트 OTel `workflow.run_id`·`workflow.name` 속성 추가; Remote Control 명령 전송 실패 수정; 캡션 없는 이미지·파일 RC 앱 전송 시 유실 수정; 다수 버그 수정 |
 | **v2.1.201** | Claude Sonnet 5 세션 미드-대화 시스템 역할 하네스 리마인더 제거 |
 | **v2.1.200** | `AskUserQuestion` 대화 자동 진행 기본 비활성화(→ `/config`에서 옵트인); 기본 권한 모드 `"default"` → `"manual"` 전환(CLI·VS Code·JetBrains 전체); 백그라운드 에이전트 데몬 핸드오버·스레드 복수 버그 수정; 스크린 리더 출력 개선 |
 | **v2.1.199** | `/skill-a /skill-b` 중첩 슬래시 스킬 최대 5개 동시 로드; TLS 검사 프록시·SSL 오류 즉시 실패(리트라이 낭비 방지); 부분 응답 미드스트림 오버로드 보존; 백그라운드 에이전트 Linux 데몬 50초 자살 버그 수정 등 다수 |

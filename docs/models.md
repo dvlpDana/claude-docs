@@ -64,7 +64,9 @@
 
 ## Fast Mode
 
-- Opus 4.6, Opus 4.8 지원 (Opus 4.7 Fast Mode는 2026-07-24 제거 예정, Opus 4.8로 마이그레이션 필요)
+- **Opus 4.8** 지원 (Claude API only — research preview); Max 플랜 사용자 기본 활성화
+- ⚠️ **Opus 4.7**: 2026-07-24 제거 예정 → `speed: "fast"` 요청 시 오류 반환. **Opus 4.8 마이그레이션 필요**
+- ~~Opus 4.6~~: 2026-06-29 제거됨 (`speed: "fast"` 요청 → 오류 없이 표준 속도·표준 가격 처리)
 - 최대 2.5배 빠른 출력 토큰 생성 (프리미엄 가격)
 - 파라미터: `speed: "fast"` + 헤더 `fast-mode-2026-02-01`
 - 대기자 명단: https://claude.com/fast-mode
