@@ -1,11 +1,17 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-07-06  
+> 마지막 업데이트: 2026-07-20  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 7월
+
+### 2026-07-15
+- **미드-대화 시스템 메시지 Claude Fable 5·Mythos 5·Opus 4.8 지원** — Claude API, Amazon Bedrock, Google Cloud에서 베타 헤더 없이 사용 가능. 기존 가용성 안내 오류 정정.
+
+### 2026-07-14
+- **Claude Enterprise 사용자 관리 Admin API (베타)** — 전체 Claude Enterprise 조직 대상 베타 공개. 멤버 목록 조회·이메일 검색·역할 변경·멤버 제거·초대 발송·취소, 그룹·멤버십 관리, 커스텀 역할 조회 지원. 그룹·커스텀 역할 요청: 헤더 `anthropic-beta: ce-user-management-2026-07-13` 필요. `read:org_audit` 스코프 Admin API 키로 GET 엔드포인트 전체 접근 가능.
 
 ### 2026-07-10
 - **Access Transparency 문서 확장** — `cmek_preserve` 이벤트에 필터 예시·이벤트 페이로드·보존 사유 코드 2개(`policy_violation_investigation`, `csae_report`) 추가. 보존 이벤트는 사람 검토자·자동 안전 파이프라인 어느 쪽에서 시작하든 기록됨을 명시.
@@ -19,12 +25,19 @@
 ### 2026-07-01
 - **Claude Fable 5·Claude Mythos 5 접근 복구** — 서비스 중단 이후 재배포 완료. [Anthropic 성명](https://www.anthropic.com/news/redeploying-fable-5-mythos-5) 참고
 
-### Claude Code CLI (2026-07-13 싱크 기준 최신 버전)
+### Claude Code CLI (2026-07-20 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.215** | `/verify`·`/code-review` 스킬 더 이상 자동 실행 안 함 — `/verify` 또는 `/code-review` 직접 호출 필요 |
+| **v2.1.214** | 권한 체크 다수 보안 강화(`dir/**` 자동 승인 오류·PowerShell 5.1 우회·10,000자 초과 명령·zsh 변수 구문); **EndConversation 툴** 추가(남용 사용자 세션 종료 가능); 장시간 툴 호출 주기적 진행 하트비트; 메모리 파일 프론트매터에 ISO `modified` 타임스탬프; OTel 이벤트 `message.uuid`·`client_request_id`·`tool_source` 속성; Docker 데몬 리다이렉트 플래그 권한 프롬프트 추가; 다수 버그·메모리 수정 |
+| **v2.1.212** | **`/fork`** 대화를 새 배경 세션으로 복사(기존 인-세션 서브에이전트 → **`/subtask`**); `claude auto-mode reset`; WebSearch 세션당 최대 200회 캡(`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`); 서브에이전트 최대 200개 캡(`CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION`); MCP 툴 2분 초과 시 배경 자동 이동; `/resume` 과거 세션 목록 피커; 다수 버그 수정 |
+| **v2.1.211** | `--forward-subagent-text` 플래그·환경변수(서브에이전트 텍스트·싱킹 stream-json 포함); 권한 미리보기 양방향 오버라이드·영너비 문자 무력화; PreToolUse hook `ask`가 Auto Mode를 재정의하도록 수정; 플러그인 MCP 아이들 복귀 후 재연결 수정; 서브에이전트 모델 오버라이드 유지 수정; 다수 버그 수정 |
+| **v2.1.210** | 접힌 툴 요약 라인에 실시간 경과시간 카운터; `Write(path)`·`NotebookEdit(path)`·`Glob(path)` 권한 규칙 시작 경고 추가; worktree 격리 서브에이전트 주 repo git-mutating 명령 차단 수정; `ultracode` 비사람 입력(웹훅 페이로드 등) 발동 수정; 성능 개선(파일 편집 읽기 캐시 16 MB 한도·세션 트랜스크립트 크기 최대 79배 절감·MCP 도구 라운드 최대 7배 가속) |
+| **v2.1.209** | `claude agents` 배경 세션에서 `/model` 등 다이얼로그 차단 수정 (2.1.208 과도한 가드 회귀 수정) |
+| **v2.1.208** | **스크린 리더 모드** 추가(`--ax-screen-reader` / `CLAUDE_AX_SCREEN_READER=1` / `"axScreenReader": true`); `vimInsertModeRemaps` 설정(삽입 모드 두 키 시퀀스 매핑); `CLAUDE_CODE_PROCESS_WRAPPER`(기업 래퍼 실행 파일 지원); 멀티셀렉트·입력 행 마우스 클릭 지원; 다수 버그 수정 |
 | **v2.1.207** | Auto Mode Bedrock·Vertex·Foundry GA(`disableAutoMode` 설정으로 비활성화); 긴 목록·표 스트리밍 중 터미널 프리즈·키 지연 수정; 비대화형 실행 시 원격 관리 설정 미동의 자동 기록 수정; 플러그인 훅 `${user_config.*}` 쉘 인젝션 차단(exec 형식 사용 권고); 플러그인 옵션 프로젝트 `.claude/settings.json` 읽기 금지(사용자·관리·`--settings` 설정만 허용); `/usage-credits` 잘못된 금액 입력 거부·$1,000 초과 시 타이핑 확인 등 다수 수정 |
 | **v2.1.206** | `/cd` 디렉토리 경로 제안; `/doctor` 불필요 CLAUDE.md 콘텐츠 정리 제안; `/commit-push-pr` 설정된 push 원격지 자동 허용; Gateway `/login` 공개 게이트웨이 지원; `EnterWorktree` 프로젝트 외부 워크트리 진입 시 확인 프롬프트; 배경 에이전트 버전 업데이트 세션 어태치 전 사전 처리; 다수 버그 수정 |
 | **v2.1.205** | Auto Mode 세션 트랜스크립트 파일 변조 차단 규칙 추가; `--json-schema` 유효하지 않은 스키마 미구조화 출력 방지; max-turns 한도 도달 시 미전송 메시지 유실 수정; Windows 워크트리 삭제 시 NTFS 정션 외부 파일 삭제 방지; 서브에이전트 `SendMessage` 재개 후 실패/완료 상태 유지 수정 등 다수 |
