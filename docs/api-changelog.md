@@ -1,6 +1,6 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-07-20  
+> 마지막 업데이트: 2026-07-27  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
@@ -25,12 +25,17 @@
 ### 2026-07-01
 - **Claude Fable 5·Claude Mythos 5 접근 복구** — 서비스 중단 이후 재배포 완료. [Anthropic 성명](https://www.anthropic.com/news/redeploying-fable-5-mythos-5) 참고
 
-### Claude Code CLI (2026-07-20 싱크 기준 최신 버전)
+### Claude Code CLI (2026-07-27 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.220** | 버그 수정 및 안정성 개선 |
+| **v2.1.219** | **Claude Opus 5** (`claude-opus-5`) 출시 — 새 기본 Opus 모델, 1M 컨텍스트, Fast Mode $10/$50/MTok; `sandbox.network.strictAllowlist` 설정; `DirectoryAdded` 훅; 중첩 서브에이전트 depth 3 기본 허용; Opus 4.7 Fast Mode 제거; `workflowSizeGuideline` 설정 키; 다수 버그 수정 |
+| **v2.1.218** | `/code-review` 배경 서브에이전트 실행 전환; `/deep-research` 수동 호출 전환; Auto Mode 위험 명령(rm/`&` 등) 자동 분류; 에이전트 이름 `:` 포함 금지; `skills context: fork` 기본 배경 실행; 다수 안정성 수정 |
+| **v2.1.217** | 이모지 단축 코드 자동완성(`:heart:` → ❤️); 동시 서브에이전트 캡 20개 기본(`CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`); 서브에이전트 중첩 기본 비활성화; 트랜스크립트 쓰기 실패 경고; 다수 버그 수정 |
+| **v2.1.216** | `sandbox.filesystem.disabled` 설정; 긴 세션 메시지 정규화 성능 회귀 수정; worktree 격리 서브에이전트 git 리다이렉션 차단; `/context` 컨텍스트 초과 경고; 다수 버그 수정 |
 | **v2.1.215** | `/verify`·`/code-review` 스킬 더 이상 자동 실행 안 함 — `/verify` 또는 `/code-review` 직접 호출 필요 |
 | **v2.1.214** | 권한 체크 다수 보안 강화(`dir/**` 자동 승인 오류·PowerShell 5.1 우회·10,000자 초과 명령·zsh 변수 구문); **EndConversation 툴** 추가(남용 사용자 세션 종료 가능); 장시간 툴 호출 주기적 진행 하트비트; 메모리 파일 프론트매터에 ISO `modified` 타임스탬프; OTel 이벤트 `message.uuid`·`client_request_id`·`tool_source` 속성; Docker 데몬 리다이렉트 플래그 권한 프롬프트 추가; 다수 버그·메모리 수정 |
 | **v2.1.212** | **`/fork`** 대화를 새 배경 세션으로 복사(기존 인-세션 서브에이전트 → **`/subtask`**); `claude auto-mode reset`; WebSearch 세션당 최대 200회 캡(`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`); 서브에이전트 최대 200개 캡(`CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION`); MCP 툴 2분 초과 시 배경 자동 이동; `/resume` 과거 세션 목록 피커; 다수 버그 수정 |
