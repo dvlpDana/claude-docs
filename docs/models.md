@@ -1,6 +1,6 @@
 # Claude 모델 레퍼런스
 
-> 마지막 업데이트: 2026-07-27  
+> 마지막 업데이트: 2026-08-10  
 > 소스: https://platform.claude.com/docs/en/about-claude/models/overview
 
 ---
@@ -50,7 +50,7 @@
 | Claude Opus 4.6 | `claude-opus-4-6` | 활성 |
 | Claude Sonnet 4.5 | `claude-sonnet-4-5-20250929` | 활성 |
 | Claude Opus 4.5 | `claude-opus-4-5-20251101` | 활성 |
-| Claude Opus 4.1 | `claude-opus-4-1-20250805` | ⚠️ 사용 중단 예정 (2026-08-05 은퇴) |
+| Claude Opus 4.1 | `claude-opus-4-1-20250805` | ❌ 은퇴 (2026-08-05) |
 | **Claude Sonnet 4** | `claude-sonnet-4-20250514` | ❌ 은퇴 (2026-06-15) |
 | **Claude Opus 4** | `claude-opus-4-20250514` | ❌ 은퇴 (2026-06-15) |
 

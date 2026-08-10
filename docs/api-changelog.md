@@ -1,7 +1,24 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-07-27  
+> 마지막 업데이트: 2026-08-10  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
+
+---
+
+## 2026년 8월
+
+### Claude Code CLI (2026-08-10 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.226** | 버그 수정 및 안정성 개선 |
+| **v2.1.225** | 게이트웨이 지출 한도(spend-limit) 지원 — 한도 도달 메시지에 한도명·초기화 시간·운영자 메시지 표시; `claude agents` 미신뢰 디렉토리 워크스페이스 신뢰 프롬프트; MCP OAuth macOS 키체인 타임아웃 후 401 오류 수정; Auto Mode 안전 필터 거부를 연속 차단 한도에서 제외; SendMessage로 다른 기기의 Remote Control 세션에 직접 대화 시작 가능; VS Code Focus view 수정(to-do·보류 질문 접힘 방지); 다수 버그 수정 |
+| **v2.1.224** | **`claude self-hosted-runner`** — 직접 기계/컨테이너를 Claude Code 실행 환경으로 전환 (Team/Enterprise 플랜); `archive` 플러그인 소스 — HTTPS zip 설치·SHA-256 핀 지원; `ANTHROPIC_BEDROCK_REGION_PREFIX` 환경변수; `crossSessionInbound`·`dialogExpiry` 설정; 교차 세션 `SendMessage` GA (macOS·Linux); 샌드박스 크리덴셜 마스킹(`decode: "jwt"`, `awsPairs/sigv4`); 다수 보안·버그 수정 |
+| **v2.1.223** | `strictKnownMarketplaces`·`blockedMarketplaces`에 소유자 와일드카드(`"owner/*"`) 지원; 제한 모델 서브에이전트 시 상위 모델 실행 경고; `/teleport` 힌트(클라우드→로컬 전환); Bash 권한 우회(제작 명령·탭/불가시 유니코드 숨김) 수정; 워크플로우 동적 `import()` 샌드박스 우회 수정; `bypassPermissions` 모드 조직 정책 우회 수정; 다수 버그 수정 |
+| **v2.1.222** | 워크트리 격리 서브에이전트의 주 체크아웃 파괴적 git 명령 차단; PreToolUse 자동 허용 훅이 배경 에이전트 도구 제한 우회하던 수정; HTTPS 프록시 뒤 시작 연결 확인 중단 수정; Auto Mode 안전성: `SendMessage` 메시지 권한 분류기 평가 후 전달; 다수 버그 수정 |
+| **v2.1.221** | [VSCode] **Focus 뷰** — 도구 활동을 턴별 확장 요약으로 숨김 (`Ctrl+Alt+F`); Linux·WSL 샌드박스 크리덴셜 `mode: "mask"` 지원; `claude plugin validate` 마켓플레이스 이름 호환성 경고; `claude-api` 스킬 `prompt-audit` 서브커맨드; Bash 권한 우회(zsh `[[ ]]` 정규식 조건) 수정; Vertex AI Claude 4.5+ 도구 검색 재활성화; 다수 버그 수정 |
 
 ---
 
