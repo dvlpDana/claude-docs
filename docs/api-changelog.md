@@ -1,18 +1,24 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-08-10  
+> 마지막 업데이트: 2026-08-17  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 8월
 
-### Claude Code CLI (2026-08-10 싱크 기준 최신 버전)
+### Claude Code CLI (2026-08-17 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.233** | GitLab MR URL `--worktree`·`claude agents` 지원; Linux Bash 툴 메모리 cgroup 지원 (`CLAUDE_CODE_TOOL_MEMORY_LIMIT`); `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` 환경변수; `forward_user_identity` 게이트웨이 설정; Todo/task 추적 툴 Opus 4.8·Sonnet 5·Fable 5·Mythos 5+ 기본 제거 (`CLAUDE_CODE_ENABLE_TODO_TOOLS=1`로 복원); `claude plugin validate` `.claude/skills` 디렉토리 검사; 스크린 리더 `/effort` 선택기 개선; 다수 보안·버그 수정 |
+| **v2.1.232** | **서브에이전트 포킹 기본 활성화** (`subagent_type: "fork"` 전체 대화·캐시 상속); `@` 세션 멘션으로 다른 세션에 직접 `SendMessage`; 세션 고유 이름 자동 부여; GitLab 플러그인 마켓플레이스 지원; GitLab 토큰 패밀리 시크릿 리덕션; `additionalMarketplaces`·`allowedMarketplaces` 설정 별칭; Fable 5 `/advisor` 재지원; PowerShell·Windows symlink 권한 우회 수정; 중첩 git 신뢰 범위 수정; 다수 보안·버그 수정 |
+| **v2.1.231** | MCP OAuth Slack 등 사전 등록 클라이언트 리다이렉트 URI 불일치 수정 |
+| **v2.1.229** | 플러그인 마켓플레이스 `command` 소스 지원; 게이트웨이 SSE keepalive 핑 (Vertex·Bedrock 타임아웃 방지); `ListAgents` 오프라인·클라우드 세션 레이블 표시; `claude remote-control --continue` 문서화; 스트리밍 응답 소실·중복 출력 수정; 좁은 터미널 RangeError 크래시 수정; `/install-github-app` 리뷰 미게시 수정; 다수 버그 수정 |
+| **v2.1.228** | 세션 cleanup 메모리 폴더 내용 삭제 수정; self-hosted runner checkout 훅 실패 시 건너뜀; 클라우드 세션 자격증명 격리 수정; claude.ai 싱크 스킬 보안 강화 (로컬 명령 차단·설명 정제·섀도잉 방지); Vertex AI 만료 크리덴셜 즉시 실패; 세션 간 인박스 초기화 수정; 다수 보안·버그 수정 |
+| **v2.1.227** | 만료 토큰 시작 시 Max 플랜 Fable 크레딧 오인 프롬프트 수정; `claude-code-action` Bash 명령 전면 실패 수정 (`allowed_non_write_users`); `/tui` 리와인드 세션 복원 수정; 슬래시 명령 메뉴 UI 개선 (선택 행 강조·이모지·악센트 보존) |
 | **v2.1.226** | 버그 수정 및 안정성 개선 |
 | **v2.1.225** | 게이트웨이 지출 한도(spend-limit) 지원 — 한도 도달 메시지에 한도명·초기화 시간·운영자 메시지 표시; `claude agents` 미신뢰 디렉토리 워크스페이스 신뢰 프롬프트; MCP OAuth macOS 키체인 타임아웃 후 401 오류 수정; Auto Mode 안전 필터 거부를 연속 차단 한도에서 제외; SendMessage로 다른 기기의 Remote Control 세션에 직접 대화 시작 가능; VS Code Focus view 수정(to-do·보류 질문 접힘 방지); 다수 버그 수정 |
 | **v2.1.224** | **`claude self-hosted-runner`** — 직접 기계/컨테이너를 Claude Code 실행 환경으로 전환 (Team/Enterprise 플랜); `archive` 플러그인 소스 — HTTPS zip 설치·SHA-256 핀 지원; `ANTHROPIC_BEDROCK_REGION_PREFIX` 환경변수; `crossSessionInbound`·`dialogExpiry` 설정; 교차 세션 `SendMessage` GA (macOS·Linux); 샌드박스 크리덴셜 마스킹(`decode: "jwt"`, `awsPairs/sigv4`); 다수 보안·버그 수정 |
