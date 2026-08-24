@@ -1,18 +1,37 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-08-17  
+> 마지막 업데이트: 2026-08-24  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 8월
 
-### Claude Code CLI (2026-08-17 싱크 기준 최신 버전)
+### 2026-08-20
+- **Python SDK v1.0 출시** — HTTP 레이어를 `httpx` → `httpx2`(유지 관리 중인 API 호환 포크)로 전환. 주요 제거 사항: 레거시 Text Completions API, Messages 메서드의 `temperature`/`top_p`/`top_k` 파라미터, 툴 러너 클라이언트 측 `compaction_control`. Python 3.10+ 필수. async 클라이언트 `.with_raw_response` 결과 파싱에 `await response.parse()` 필요. `AnthropicBedrock` AWS 리전 미설정 시 `us-east-1` 기본값 대신 오류 반환. v1 마이그레이션 가이드 참고.
+
+### 2026-08-19
+- **컴퓨터 사용 툴 정식 출시** (`computer_toolset_20260801`) — 베타 헤더 불필요. 배치 액션(한 턴에 여러 액션), 줌 기본 활성화, `configs`로 멤버별 설정 지원. 기존 `computer_20251124` 베타와 요청 형식 변경됨 → 마이그레이션 가이드 확인 필수. Fable 5·Mythos 5·Opus 5·Sonnet 5·Opus 4.8 지원.
+- **브라우저 사용 툴 출시** (`browser_toolset_20260801`) — 앱이 호스팅하는 브라우저를 구동하는 클라이언트 툴셋. 접근성 트리·엘리먼트 참조·폼 입력·탭 관리·다운로드 리포팅·파일 업로드(옵트인) 지원. Fable 5·Mythos 5·Opus 5·Sonnet 5·Opus 4.8 지원.
+- **Files API 정식 출시** — `files-api-2025-04-14` 베타 헤더 불필요. 업로드 시 `expires_in_seconds` 설정, 파일 객체에 `expires_at` 포함. 목록 조회 시 페이지네이션·`ids[]` 필터 지원. 기존 베타 헤더 요청도 계속 동작.
+- **Agent Skills 및 Skills API 정식 출시** — `skills-2025-10-02` 베타 헤더 불필요. Messages API `container` 파라미터로 스킬 로드 가능.
+- **Admin API 사용자 관리 정식 출시** — `ce-user-management-2026-07-13` 베타 헤더 불필요 (그룹·커스텀 역할 요청 포함).
+- **Managed Agents 웹 검색·패치 도메인 제한** — `allowed_domains`·`blocked_domains`로 에이전트의 `web_search`·`web_fetch` 툴 접근 사이트 제한 가능.
+
+### Claude Code CLI (2026-08-24 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.241** | 버그 수정 및 안정성 개선 |
+| **v2.1.240** | 버그 수정 및 안정성 개선 |
+| **v2.1.239** | 비용 추정에 1.1× 미국 전용 추론 프리미엄 반영; Bedrock·Vertex·Foundry 풀스크린 렌더러 최초 제안; `/claude-api upgrade` Python 0.x → 1.x 마이그레이션; 클라우드 세션 플러그인 `@synced` 표시·관리; Alpine/musl 네이티브 이미지 붙여넣기·클립보드·오디오 애드온 지원; 다수 보안·버그 수정 |
+| **v2.1.238** | `keybindingFlavor` 설정(`"readline"` 모드); 마켓플레이스·카탈로그 `headersHelper` 지원; `self-hosted-runner --defer-shutdown-max-min`·`--proxy-authorization-command/file` 플래그; 다수 버그 수정 |
+| **v2.1.237** | LLM 게이트웨이·커스텀 기반 URL 프롬프트 캐싱 수정; 내장 "Concise" 출력 스타일 추가 (`/config`에서 선택) |
+| **v2.1.236** | `ANTHROPIC_DEFAULT_MODEL` 환경변수(새 세션 기본 모델 설정); `notify_when_idle` 교차 세션 SendMessage 옵션(macOS·Linux); macOS 샌드박스 와일드카드 거부 규칙 강화; 다수 버그 수정 |
+| **v2.1.235** | 선택적 `spellcheck` 설정(aspell·hunspell·ispell로 입력 중 오타 밑줄 표시); 다수 버그 수정 |
+| **v2.1.234** | `CLAUDE_CODE_PROJECT_DIR_NAME` 환경변수; `selection:clear` 키바인딩; GitLab MR 배지(풋터·상태줄); 사용 한도 초기화 시 세션 자동 재개; 보안: 원격 파일 읽기·세션 복원·워크플로우 스크립트의 Windows NT-namespace 경로 거부(NTLM 크레덴셜 유출 방어); 다수 버그 수정 |
 | **v2.1.233** | GitLab MR URL `--worktree`·`claude agents` 지원; Linux Bash 툴 메모리 cgroup 지원 (`CLAUDE_CODE_TOOL_MEMORY_LIMIT`); `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` 환경변수; `forward_user_identity` 게이트웨이 설정; Todo/task 추적 툴 Opus 4.8·Sonnet 5·Fable 5·Mythos 5+ 기본 제거 (`CLAUDE_CODE_ENABLE_TODO_TOOLS=1`로 복원); `claude plugin validate` `.claude/skills` 디렉토리 검사; 스크린 리더 `/effort` 선택기 개선; 다수 보안·버그 수정 |
 | **v2.1.232** | **서브에이전트 포킹 기본 활성화** (`subagent_type: "fork"` 전체 대화·캐시 상속); `@` 세션 멘션으로 다른 세션에 직접 `SendMessage`; 세션 고유 이름 자동 부여; GitLab 플러그인 마켓플레이스 지원; GitLab 토큰 패밀리 시크릿 리덕션; `additionalMarketplaces`·`allowedMarketplaces` 설정 별칭; Fable 5 `/advisor` 재지원; PowerShell·Windows symlink 권한 우회 수정; 중첩 git 신뢰 범위 수정; 다수 보안·버그 수정 |
 | **v2.1.231** | MCP OAuth Slack 등 사전 등록 클라이언트 리다이렉트 URI 불일치 수정 |
