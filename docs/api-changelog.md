@@ -1,11 +1,20 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-08-24  
+> 마지막 업데이트: 2026-08-31  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 8월
+
+### 2026-08-27
+- **SDK 베타 전환 완료** (Python 1.2.0, TypeScript 0.122.0, Go 1.68.0, Java 2.59.0, Ruby 1.67.0, C# 12.44.0) — `client.beta.files`·`client.beta.skills`가 더 이상 `files-api-2025-04-14`·`skills-2025-10-02` 베타 헤더를 전송하지 않고, `client.files`·`client.skills`와 동일한 응답 형태 반환. `client.beta.skills.delete()`는 스킬과 모든 버전을 함께 삭제. 베타 타입 `BetaSkill` → `BetaContainerSkill` 리네임. 기존 베타 헤더 요청은 이전 응답 유지.
+- **개인 키(personal keys) 및 서비스 계정 키(service account keys) 지원** — Claude Console에서 개인 키·서비스 계정 키 생성 가능. 연결 계정 제거 시 자동 비활성화. 워크스페이스 한정 또는 Admin API 전체 접근 범위 지정 가능. 기존 워크스페이스 API 키는 레거시 옵션으로 유지.
+
+### 2026-08-26
+- **Compliance API 세션 엔드포인트 정식 출시** — Cowork·Claude Code 세션 트랜스크립트 조회 기능 베타 졸업.
+- **Compliance API 로컬 세션 확장 (Enterprise 베타)** — Claude Science 세션(`claude_science`) 및 M365 세션(Excel·PowerPoint·Word·Outlook, `office_agents*`) 트랜스크립트 포함. 기존 Compliance Access Key + `read:compliance_user_data` 스코프로 접근 가능.
+- **Admin API SDK 통합** — `ant` CLI 및 Python·TypeScript·C#·Go·Java·PHP·Ruby SDK의 `client.beta.organization` 하위에 Admin API 정식 제공. 조직 정보·멤버·초대·워크스페이스·API 키·요율 한도·서비스 계정·WIF·CMEK 지원. Usage·비용 보고서·Enterprise 사용자 관리·분석 엔드포인트는 curl 전용 유지.
 
 ### 2026-08-20
 - **Python SDK v1.0 출시** — HTTP 레이어를 `httpx` → `httpx2`(유지 관리 중인 API 호환 포크)로 전환. 주요 제거 사항: 레거시 Text Completions API, Messages 메서드의 `temperature`/`top_p`/`top_k` 파라미터, 툴 러너 클라이언트 측 `compaction_control`. Python 3.10+ 필수. async 클라이언트 `.with_raw_response` 결과 파싱에 `await response.parse()` 필요. `AnthropicBedrock` AWS 리전 미설정 시 `us-east-1` 기본값 대신 오류 반환. v1 마이그레이션 가이드 참고.
@@ -18,12 +27,17 @@
 - **Admin API 사용자 관리 정식 출시** — `ce-user-management-2026-07-13` 베타 헤더 불필요 (그룹·커스텀 역할 요청 포함).
 - **Managed Agents 웹 검색·패치 도메인 제한** — `allowed_domains`·`blocked_domains`로 에이전트의 `web_search`·`web_fetch` 툴 접근 사이트 제한 가능.
 
-### Claude Code CLI (2026-08-24 싱크 기준 최신 버전)
+### Claude Code CLI (2026-08-31 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.251** | `PreModelSwitch`·`PostModelSwitch` 훅 이벤트 추가; `SessionStart` 재개 훅에 세션 staleness·재캐시 비용 정보 추가; 원격 제어 클라이언트로 포그라운드 서브에이전트 툴 호출 라이브 스트리밍; `/usage`에 지출 한도 바·`prompt_cache` 객체 추가; `attach`·`logs`·`stop`·`respawn`·`rm` 헬프 노출; 심링크 경로 파일 툴 보안 수정; 플러그인 경로 트래버설·프로젝트 설정 베타 추적 우회·Grep/Glob 심링크 거부 규칙 수정 등 다수 보안·버그 수정 |
+| **v2.1.250** | 버그 수정 및 안정성 개선 |
+| **v2.1.248** | `--restricted` 플래그(`CLAUDE_CODE_RESTRICTED=1`) 추가 — 커맨드·코드 실행·WebFetch 툴 제거, 작업 디렉토리 내 파일 툴만 허용; 에이전트 프론트매터 `experimental.cacheTtl` (`"5m"`/`"1h"`) 추가; `claude self-hosted-runner --client-label` 플래그; 관리형 설정 진단(`/doctor`·`/status`); `/web-setup` GitHub CLI `workflow` 스코프 경고; 교차 세션 메시지 Bedrock·Vertex·Foundry·텔레메트리 비활성 세션 지원; 다수 보안·버그 수정 |
+| **v2.1.247** | `SendFeedback` 툴 추가(세션 오류 시 `/feedback`용 초안 보고서 생성); `spinnerTipsOverride` 조직 커스텀 팁 지원; Bash 권한 프롬프트에 Auto Mode 전환 원클릭 옵션; `/claude-api cost-optimize` 비용 최적화 프로파일러; Admin API 커버리지 스킬 업데이트; 다수 버그 수정 |
+| **v2.1.246** | Bash 허용 규칙 와일드카드 서브커맨드 앞 배치 시 시작 경고 추가; `/permissions`에 Auto Mode 탭 추가; 종료 시각을 종료 지속시간 라인에 표시; 전체화면 스크롤·렌더 버그 수정; MCP 툴 인터럽트 처리·플러그인 캐시 중복·`/reload-plugins` 수정 등 다수 버그 수정 |
 | **v2.1.241** | 버그 수정 및 안정성 개선 |
 | **v2.1.240** | 버그 수정 및 안정성 개선 |
 | **v2.1.239** | 비용 추정에 1.1× 미국 전용 추론 프리미엄 반영; Bedrock·Vertex·Foundry 풀스크린 렌더러 최초 제안; `/claude-api upgrade` Python 0.x → 1.x 마이그레이션; 클라우드 세션 플러그인 `@synced` 표시·관리; Alpine/musl 네이티브 이미지 붙여넣기·클립보드·오디오 애드온 지원; 다수 보안·버그 수정 |
