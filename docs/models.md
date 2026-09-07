@@ -1,6 +1,6 @@
 # Claude 모델 레퍼런스
 
-> 마지막 업데이트: 2026-08-31  
+> 마지막 업데이트: 2026-09-07  
 > 소스: https://platform.claude.com/docs/en/about-claude/models/overview
 
 ---
@@ -9,6 +9,7 @@
 
 | 모델 | API ID | 컨텍스트 | 최대 출력 | 입력 | 출력 |
 |------|--------|---------|---------|------|------|
+| **Claude Fable 5.1** ⭐ | `claude-fable-5-1` | 1M | 128k | $10/MTok | $50/MTok |
 | **Claude Fable 5** | `claude-fable-5` | 1M | 128k | $10/MTok | $50/MTok |
 | **Claude Mythos 5** | `claude-mythos-5` | 1M | 128k | $10/MTok | $50/MTok |
 | **Claude Opus 5** | `claude-opus-5` | 1M | 128k | $5/MTok‡ | $25/MTok‡ |
@@ -18,7 +19,8 @@
 | **Claude Sonnet 4.6** | `claude-sonnet-4-6` | 1M | 128k | $3/MTok | $15/MTok |
 | **Claude Haiku 4.5** | `claude-haiku-4-5-20251001` | 200k | 64k | $1/MTok | $5/MTok |
 
-> **Claude Fable 5**: Mythos-class 모델, 역대 일반 공개 최고 성능. 1M 컨텍스트 기본 내장. (2026-06-09 GA)  
+> **Claude Fable 5.1** (`claude-fable-5-1`): 2026-09월 출시, 새 기본 Fable 모델 (v2.1.257 기준). 1M 컨텍스트, $10/$50/MTok, 캐시 읽기 $0.25/MTok. Fable 5에서 성능·캐싱 개선.  
+> **Claude Fable 5**: Mythos-class 모델, 역대 일반 공개 최고 성능. 1M 컨텍스트 기본 내장. (2026-06-09 GA). ⚠️ Fable 5.1이 새 기본 Fable 모델로 대체.  
 > **Claude Mythos 5** (`claude-mythos-5`): Project Glasswing 정식 모델. Fable 5와 동일 가격·성능. 2026-06-09 출시. 초대 전용 제한 제공.  
 > **Claude Opus 4.8**: Opus 계열 최신 버전. Bedrock·Vertex·Foundry Auto Mode 지원.  
 > **Claude Sonnet 5** (`claude-sonnet-5`): 2026-06-30 출시. Claude Code의 새 기본 모델. Adaptive Thinking 기본 활성화. 수동 Extended Thinking 불가. Priority Tier 미지원. 지식 컷오프 Jan 2026. 소개 가격($2/$10/MTok) 2026-08-31 종료 → 표준가 $3/$15/MTok 적용.  
@@ -35,11 +37,11 @@
 
 ### 플랫폼별 ID
 
-| 플랫폼 | Fable 5 | Mythos 5 | Opus 5 | Opus 4.8 | Opus 4.7 | Sonnet 5 | Sonnet 4.6 | Haiku 4.5 |
-|--------|---------|---------|--------|---------|---------|---------|----------|---------|
-| Claude API | `claude-fable-5` | `claude-mythos-5` | `claude-opus-5` | `claude-opus-4-8` | `claude-opus-4-7` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5-20251001` |
-| AWS Bedrock | `anthropic.claude-fable-5` | 제한 제공 | `anthropic.claude-opus-5`※ | `anthropic.claude-opus-4-8` | `anthropic.claude-opus-4-7` | `anthropic.claude-sonnet-5` | `anthropic.claude-sonnet-4-6` | `anthropic.claude-haiku-4-5-20251001-v1:0` |
-| Vertex AI | `claude-fable-5` | 제한 제공 | `claude-opus-5`※ | `claude-opus-4-8` | `claude-opus-4-7` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5@20251001` |
+| 플랫폼 | Fable 5.1 | Fable 5 | Mythos 5 | Opus 5 | Opus 4.8 | Opus 4.7 | Sonnet 5 | Sonnet 4.6 | Haiku 4.5 |
+|--------|---------|---------|---------|--------|---------|---------|---------|----------|---------|
+| Claude API | `claude-fable-5-1` | `claude-fable-5` | `claude-mythos-5` | `claude-opus-5` | `claude-opus-4-8` | `claude-opus-4-7` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5-20251001` |
+| AWS Bedrock | `anthropic.claude-fable-5-1`※ | `anthropic.claude-fable-5` | 제한 제공 | `anthropic.claude-opus-5`※ | `anthropic.claude-opus-4-8` | `anthropic.claude-opus-4-7` | `anthropic.claude-sonnet-5` | `anthropic.claude-sonnet-4-6` | `anthropic.claude-haiku-4-5-20251001-v1:0` |
+| Vertex AI | `claude-fable-5-1`※ | `claude-fable-5` | 제한 제공 | `claude-opus-5`※ | `claude-opus-4-8` | `claude-opus-4-7` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5@20251001` |
 
 ---
 

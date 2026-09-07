@@ -1,7 +1,24 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-08-31  
+> 마지막 업데이트: 2026-09-07  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
+
+---
+
+## 2026년 9월
+
+### Claude Code CLI (2026-09-07 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.263** | 버그 수정 및 안정성 개선 |
+| **v2.1.261** | `/skill-doctor` 추가(미사용 스킬·컨텍스트 비용 분석); `bashOutputMaxChars`·`taskOutputMaxChars` 설정(최대 128K); `--append-subagent-system-prompt-file` 플래그; Organization policy 오류 이유 `/status`·`claude doctor` 표시; VS Code: diff 패널 외 대화 스크롤, 권한 프롬프트 폴드 버튼, 세션 Archive 메뉴, 플랫 모델 목록 피커 등; 다수 보안·버그 수정 (Bash Read 거부 회귀 복원, MCP 아이들 복귀 재연결, 플러그인 설치 힌트 태그 누출 수정 등) |
+| **v2.1.260** | 풀스크린 모드 `/diff` 패널(미커밋 변경 사항 표시); 캐시 미스 원인 표시(`/cost`·`prompt_cache`); `/advisor` 텍스트 폼 지원(헤드리스·RC 세션); 게이트웨이 `oidc.scope_on_refresh`; `Edit`/`Write`/`Read` 괄호 포함 경로 권한 규칙 수정; Bedrock 기업 CA 인증 수정; `/status` 중복 자격증명 표시 수정; Fable 5.1 프롬프트 캐싱 수정; 다수 보안·버그 수정 |
+| **v2.1.259** | `managedMcpServers` 관리형 설정(조직 HTTP/SSE MCP 서버 배포); `--permission-prompts none` 플래그(무인 헤드리스 자동 거부); `glab mr` 명령 인식(GitLab MR 배지); `--json` 플러그인 검증; 동시 세션 `~/.claude.json` 충돌 수정; 반복 대화 거부 수정; Bash `Read()` 거부 규칙 강화(옵션 값·operand 포함); 다수 보안·버그 수정 |
+| **v2.1.258** | macOS 12 (Monterey) 실행 불가 회귀 수정 (2.1.255 도입); 원격·예약 세션 재전송 승인 오류 수정 |
+| **v2.1.257** | **Claude Fable 5.1** (`claude-fable-5-1`) 출시 — 새 기본 Fable 모델, 1M 컨텍스트, $10/$50/MTok, 캐시 읽기 $0.25/MTok; `timeFormat`·`timeZone` 설정; Containment Escape 규칙 Auto Mode 추가(클라우드 메타데이터 자격증명·egress 우회 자동 차단); `CLAUDE_CODE_SUBAGENT_MODEL_FORCE` 환경변수; `/effort s` 현재 세션 한정 변경; Fable 5.1 캐시 누락 수정; 다수 버그 수정 |
 
 ---
 
