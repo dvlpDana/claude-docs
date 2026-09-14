@@ -1,6 +1,6 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-09-07  
+> 마지막 업데이트: 2026-09-14  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
@@ -13,6 +13,9 @@
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.270** | Bash 읽기 전용 git 명령이 세션 실행 중 권한 요청하던 회귀 수정 (v2.1.269 도입) |
+| **v2.1.269** | `claude plugin eval` 추가(플러그인 평가 스위트 실행·채점, JSON+HTML 보고서); `/output-style [name]` 추가(출력 스타일 목록·전환, 원격 제어·클라우드·헤드리스 포함); Bash 파일 편집 diff 표시(`bashEditDiffEnabled` 설정); `OTEL_METRICS_INCLUDE_REPOSITORY`(vcs.* 리포지토리 속성 태깅); `CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS`(1-256, 워크플로우 동시 에이전트 한도); `/focus` 스피너 팁 추가; 프롬프트 캐시 무효화·세션 재개·F1/F2/F4 키·헤드리스 "대기 중" 상태 등 다수 버그 수정; [VSCode] 에이전트 맵, Hooks 대화상자, 서브에이전트 진행 행, 권한 규칙 대화상자 추가; [웹] 큐 메시지 회수 기능; [Claude Tag] GitHub 설치 확인 대화상자 및 다수 개선 |
+| **v2.1.268** | Claude apps 게이트웨이 `pricing:` 설정(Claude Code 클라이언트 요율 제공); `access_control.allow_cidrs` 빈 경우 및 공개 주소 첫 요청 경고; `gatewayInternalNetworks` 관리형 설정; `claude self-hosted-runner --remove-session-state` 플래그; 아티팩트 브라우저 탭 아이콘; `claude plugin install/uninstall/update/enable/disable` `--json` 플래그; 서드파티 호환 엔드포인트 HTTP 400 수정(v2.1.265 회귀); WebFetch 무한 대기 수정(300초 타임아웃, `CLAUDE_CODE_WEBFETCH_DEADLINE_MS` 조정 가능); 다수 보안·버그 수정 |
 | **v2.1.263** | 버그 수정 및 안정성 개선 |
 | **v2.1.261** | `/skill-doctor` 추가(미사용 스킬·컨텍스트 비용 분석); `bashOutputMaxChars`·`taskOutputMaxChars` 설정(최대 128K); `--append-subagent-system-prompt-file` 플래그; Organization policy 오류 이유 `/status`·`claude doctor` 표시; VS Code: diff 패널 외 대화 스크롤, 권한 프롬프트 폴드 버튼, 세션 Archive 메뉴, 플랫 모델 목록 피커 등; 다수 보안·버그 수정 (Bash Read 거부 회귀 복원, MCP 아이들 복귀 재연결, 플러그인 설치 힌트 태그 누출 수정 등) |
 | **v2.1.260** | 풀스크린 모드 `/diff` 패널(미커밋 변경 사항 표시); 캐시 미스 원인 표시(`/cost`·`prompt_cache`); `/advisor` 텍스트 폼 지원(헤드리스·RC 세션); 게이트웨이 `oidc.scope_on_refresh`; `Edit`/`Write`/`Read` 괄호 포함 경로 권한 규칙 수정; Bedrock 기업 CA 인증 수정; `/status` 중복 자격증명 표시 수정; Fable 5.1 프롬프트 캐싱 수정; 다수 보안·버그 수정 |
