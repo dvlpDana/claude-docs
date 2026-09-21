@@ -1,6 +1,6 @@
 # Claude 모델 레퍼런스
 
-> 마지막 업데이트: 2026-09-14  
+> 마지막 업데이트: 2026-09-21  
 > 소스: https://platform.claude.com/docs/en/about-claude/models/overview
 
 ---
@@ -10,6 +10,7 @@
 | 모델 | API ID | 컨텍스트 | 최대 출력 | 입력 | 출력 |
 |------|--------|---------|---------|------|------|
 | **Claude Fable 5.1** ⭐ | `claude-fable-5-1` | 1M | 128k | $10/MTok | $50/MTok |
+| **Claude Mythos 5.1** | `claude-mythos-5-1` | 1M | 128k | $10/MTok | $50/MTok |
 | **Claude Fable 5** | `claude-fable-5` | 1M | 128k | $10/MTok | $50/MTok |
 | **Claude Mythos 5** | `claude-mythos-5` | 1M | 128k | $10/MTok | $50/MTok |
 | **Claude Opus 5** | `claude-opus-5` | 1M | 128k | $5/MTok‡ | $25/MTok‡ |
@@ -19,9 +20,10 @@
 | **Claude Sonnet 4.6** | `claude-sonnet-4-6` | 1M | 128k | $3/MTok | $15/MTok |
 | **Claude Haiku 4.5** | `claude-haiku-4-5-20251001` | 200k | 64k | $1/MTok | $5/MTok |
 
-> **Claude Fable 5.1** (`claude-fable-5-1`): 2026-09월 출시, 새 기본 Fable 모델 (v2.1.257 기준). 1M 컨텍스트, $10/$50/MTok, 캐시 읽기 $0.25/MTok. Fable 5에서 성능·캐싱 개선.  
+> **Claude Fable 5.1** (`claude-fable-5-1`): 2026-09-01 출시, 새 기본 Fable 모델. 1M 컨텍스트, $10/$50/MTok, 캐시 읽기 $0.25/MTok (0.025×). Fable 5에서 성능·캐싱 개선. `tool_choice` `any`·`tool` 미지원.  
+> **Claude Mythos 5.1** (`claude-mythos-5-1`): 2026-09-01 출시, Project Glasswing 참여자 대상. Fable 5.1과 동일 사양·가격. `tool_choice` `any`·`tool` 미지원.  
 > **Claude Fable 5**: Mythos-class 모델, 역대 일반 공개 최고 성능. 1M 컨텍스트 기본 내장. (2026-06-09 GA). ⚠️ Fable 5.1이 새 기본 Fable 모델로 대체.  
-> **Claude Mythos 5** (`claude-mythos-5`): Project Glasswing 정식 모델. Fable 5와 동일 가격·성능. 2026-06-09 출시. 초대 전용 제한 제공.  
+> **Claude Mythos 5** (`claude-mythos-5`): Project Glasswing 정식 모델. Fable 5와 동일 가격·성능. 2026-06-09 출시. 초대 전용 제한 제공. ⚠️ Mythos 5.1로 대체.  
 > **Claude Opus 4.8**: Opus 계열 최신 버전. Bedrock·Vertex·Foundry Auto Mode 지원.  
 > **Claude Sonnet 5** (`claude-sonnet-5`): 2026-06-30 출시. Claude Code의 새 기본 모델. Adaptive Thinking 기본 활성화. 수동 Extended Thinking 불가. Priority Tier 미지원. 지식 컷오프 Jan 2026. 가격 $2/$10/MTok (2026-09-14 기준 공식 페이지 확인).  
 > **Claude Opus 5** (`claude-opus-5`): v2.1.219 기준 새 기본 Opus 모델. 1M 컨텍스트, 128k 출력. Fast Mode 지원 ($10/$50/MTok). ‡ 표준 가격은 models overview 공식 확인 필요 (Opus 4.8과 동일 $5/$25 추정).
@@ -37,11 +39,11 @@
 
 ### 플랫폼별 ID
 
-| 플랫폼 | Fable 5.1 | Fable 5 | Mythos 5 | Opus 5 | Opus 4.8 | Opus 4.7 | Sonnet 5 | Sonnet 4.6 | Haiku 4.5 |
-|--------|---------|---------|---------|--------|---------|---------|---------|----------|---------|
-| Claude API | `claude-fable-5-1` | `claude-fable-5` | `claude-mythos-5` | `claude-opus-5` | `claude-opus-4-8` | `claude-opus-4-7` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5-20251001` |
-| AWS Bedrock | `anthropic.claude-fable-5-1`※ | `anthropic.claude-fable-5` | 제한 제공 | `anthropic.claude-opus-5`※ | `anthropic.claude-opus-4-8` | `anthropic.claude-opus-4-7` | `anthropic.claude-sonnet-5` | `anthropic.claude-sonnet-4-6` | `anthropic.claude-haiku-4-5-20251001-v1:0` |
-| Vertex AI | `claude-fable-5-1`※ | `claude-fable-5` | 제한 제공 | `claude-opus-5`※ | `claude-opus-4-8` | `claude-opus-4-7` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5@20251001` |
+| 플랫폼 | Fable 5.1 | Mythos 5.1 | Fable 5 | Mythos 5 | Opus 5 | Opus 4.8 | Opus 4.7 | Sonnet 5 | Sonnet 4.6 | Haiku 4.5 |
+|--------|---------|---------|---------|---------|--------|---------|---------|---------|----------|---------|
+| Claude API | `claude-fable-5-1` | `claude-mythos-5-1` | `claude-fable-5` | `claude-mythos-5` | `claude-opus-5` | `claude-opus-4-8` | `claude-opus-4-7` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5-20251001` |
+| AWS Bedrock | `anthropic.claude-fable-5-1`※ | 제한 제공 | `anthropic.claude-fable-5` | 제한 제공 | `anthropic.claude-opus-5`※ | `anthropic.claude-opus-4-8` | `anthropic.claude-opus-4-7` | `anthropic.claude-sonnet-5` | `anthropic.claude-sonnet-4-6` | `anthropic.claude-haiku-4-5-20251001-v1:0` |
+| Vertex AI | `claude-fable-5-1`※ | 제한 제공 | `claude-fable-5` | 제한 제공 | `claude-opus-5`※ | `claude-opus-4-8` | `claude-opus-4-7` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5@20251001` |
 
 ---
 
@@ -60,7 +62,8 @@
 
 ## 특수 모델
 
-- **Claude Mythos 5** (`claude-mythos-5`): Project Glasswing 정식 모델, 2026-06-09 출시. Fable 5와 동일 가격($10/$50/MTok), 1M 컨텍스트, 128k 출력. 초대 전용 제한 제공
+- **Claude Mythos 5.1** (`claude-mythos-5-1`): 2026-09-01 출시. Project Glasswing 참여자 대상. Fable 5.1과 동일 가격·사양. 초대 전용 제한 제공
+- **Claude Mythos 5** (`claude-mythos-5`): Project Glasswing 정식 모델, 2026-06-09 출시. Fable 5와 동일 가격($10/$50/MTok), 1M 컨텍스트, 128k 출력. 초대 전용 제한 제공. ⚠️ Mythos 5.1로 대체
 - **Claude Mythos Preview** (`claude-mythos-preview`): Project Glasswing 방어 사이버보안 연구용, 초대 전용
 - **Claude Design** (Anthropic Labs): 시각 디자인·프로토타입·슬라이드 생성
 

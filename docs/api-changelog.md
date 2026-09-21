@@ -1,18 +1,46 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-09-14  
+> 마지막 업데이트: 2026-09-21  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 9월
 
-### Claude Code CLI (2026-09-07 싱크 기준 최신 버전)
+### 2026-09-18
+- **Compliance API — Claude in Chrome 세션 트랜스크립트 추가** — Local session endpoints에서 `claude_in_chrome` 서피스(`product_surface: "claude_in_chrome"`) 트랜스크립트 반환 지원 (Claude Enterprise 베타). 기존 Compliance Access Key + `read:compliance_user_data` 스코프로 접근 가능. [Sessions on users' machines 참고]
+
+### 2026-09-14
+- **Messages API 온디맨드 컴팩션** (`compact-2026-09-04` 베타 헤더) — 최상위 `compaction` 파라미터 전송 시 signed compaction block 반환. 이후 요청에서 해당 블록을 이전 메시지 대신 전송 가능. 최근 턴은 요약 없이 원본 유지 가능. Preserved thinking 있는 모델은 유지된 턴의 thinking 블록 재사용 가능.
+
+### 2026-09-10
+- **Managed Agents 권한 정책 `auto` 모드 추가** — 서버가 각 에이전트·MCP 툴 호출을 평가해 자동 실행·거부·승인 대기 결정. `agent.tool_use`·`agent.mcp_tool_use` 이벤트의 `evaluation` 필드로 평가 결과 보고. [Let the server evaluate each call with auto 참고]
+- **ant CLI v1.32.0**: `ant beta:sessions connect` 추가 — 터미널에서 Managed Agents 세션 연결, 라이브 팔로우, 메시지 전송, 툴 호출 승인/거부 가능. `--web` 플래그로 로컬 Claude Console 세션 뷰어 제공.
+
+### 2026-09-03
+- **ant CLI v1.30.0**: `ant apply` 추가 — 리포지토리 파일에서 에이전트·환경·스킬·메모리 스토어·배포 생성·업데이트. `claude-lock.json` 잠금 파일로 재현 가능한 적용 지원 (CI 포함).
+- **Per-message effort (베타)** Google Cloud에서 Fable 5.1, Mythos 5.1, Opus 5 대상 지원 (`mid-conversation-output-config-2026-07-01` 베타 헤더).
+
+### 2026-09-01
+- **Claude Fable 5.1** (`claude-fable-5-1`) 출시 — Fable 5의 후속 모델. 1M 컨텍스트, 128k 출력, $10/$50/MTok (Fable 5 동일), 캐시 읽기 $0.25/MTok (0.025× 기본 입력 가격). 항상 켜지는 Adaptive Thinking. Claude API, Bedrock, AWS, Google Cloud, Foundry 모두 지원.
+- **Claude Mythos 5.1** (`claude-mythos-5-1`) 출시 — Project Glasswing 참여자 대상. Fable 5.1과 동일 사양·가격.
+- Fable 5.1/Mythos 5.1 주요 제약: `tool_choice` `any`·`tool` 미지원 (→ 400 오류); `auto`·`none`만 허용. Strict tool use 또는 Structured outputs 사용 권장.
+- Fable 5.1/Mythos 5.1 Thinking block 보존: 동일 모델 또는 이후 모델만 재사용 가능. 이전 모델로 재전송 시 API 자동 삭제. `thinking-binding-controls-2026-08-01` 베타 헤더로 동작 제어 가능.
+- Fable 5.1/Mythos 5.1: 텍스트 워터마크 기본 내장. 코드 실행 툴 생성 이미지/비디오/오디오에 C2PA Content Credentials 포함 (Files API 조회 시).
+- Fable 5.1/Mythos 5.1: 30일 데이터 보존 정책 필수 (Zero Data Retention 미지원, Anthropic 별도 허가 제외).
+- `thinking.display` 신규 값 `"updates"` (베타, `thinking-display-updates-2026-08-18` 헤더) — 빈 thinking 필드 반환하되 툴 호출 사이 진행 상태 텍스트 포함.
+- Turn-scoped system messages (베타, `mid-conversation-system-clear-at-2026-08-21` 헤더) — `clear_at: "next_user_message"` 설정 시 현재 턴만 적용되고 이후 기록에는 토큰 비용 없이 유지.
+
+### Claude Code CLI (2026-09-21 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.278** | Auto mode 서버 측 분류기 기본 활성화 (Claude API·Enterprise·Bedrock·Vertex·Foundry·게이트웨이) — 분류기 오버헤드 미과금. `CLAUDE_CODE_AUTO_MODE_SERVER=0`으로 옵트아웃. `/status`에 `Auto mode server` 행 추가 |
+| **v2.1.277** | AGENTS.md 지원 추가 — CLAUDE.md 없는 프로젝트에서 AGENTS.md 읽기 (`/config`의 "Project instructions"에서 변경 가능, Bedrock·Vertex·Foundry 미지원); `CLAUDE_GATEWAY_PROXY_IS_EGRESS_BOUNDARY=1` 플래그(출구 경계 게이트웨이 프록시용); `headers:` 맵 게이트웨이 업스트림 정적 헤더 지원; 배경 작업 완료 알림 개선; `claude -p` 및 Agent SDK 내부 오류 시 exit code 1 반환 수정; 다수 버그 수정 |
+| **v2.1.276** | `ANTHROPIC_BASE_URL` 프록시 지정 시 모든 요청 400 오류 수정 (v2.1.275 회귀) |
+| **v2.1.275** | Claude apps 게이트웨이 로그인에 계정 이름 표시·확인 추가; `send-now` 키(Ctrl+Enter) — 현재 턴 중단 후 대기 메시지 즉시 전송; `otelHeadersHelper` 실패 시 시작 경고; claude.ai 계정에 활성화된 스킬·플러그인 터미널 세션 동기화(`syncClaudeAiSkills`/`syncClaudeAiPlugins: false`로 옵트아웃); `--marketplace` 플래그 추가(`claude plugin install`); 복원 메모리 파일 나이 표기 캐시 미스 수정; 다수 보안·버그 수정 |
 | **v2.1.270** | Bash 읽기 전용 git 명령이 세션 실행 중 권한 요청하던 회귀 수정 (v2.1.269 도입) |
 | **v2.1.269** | `claude plugin eval` 추가(플러그인 평가 스위트 실행·채점, JSON+HTML 보고서); `/output-style [name]` 추가(출력 스타일 목록·전환, 원격 제어·클라우드·헤드리스 포함); Bash 파일 편집 diff 표시(`bashEditDiffEnabled` 설정); `OTEL_METRICS_INCLUDE_REPOSITORY`(vcs.* 리포지토리 속성 태깅); `CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS`(1-256, 워크플로우 동시 에이전트 한도); `/focus` 스피너 팁 추가; 프롬프트 캐시 무효화·세션 재개·F1/F2/F4 키·헤드리스 "대기 중" 상태 등 다수 버그 수정; [VSCode] 에이전트 맵, Hooks 대화상자, 서브에이전트 진행 행, 권한 규칙 대화상자 추가; [웹] 큐 메시지 회수 기능; [Claude Tag] GitHub 설치 확인 대화상자 및 다수 개선 |
 | **v2.1.268** | Claude apps 게이트웨이 `pricing:` 설정(Claude Code 클라이언트 요율 제공); `access_control.allow_cidrs` 빈 경우 및 공개 주소 첫 요청 경고; `gatewayInternalNetworks` 관리형 설정; `claude self-hosted-runner --remove-session-state` 플래그; 아티팩트 브라우저 탭 아이콘; `claude plugin install/uninstall/update/enable/disable` `--json` 플래그; 서드파티 호환 엔드포인트 HTTP 400 수정(v2.1.265 회귀); WebFetch 무한 대기 수정(300초 타임아웃, `CLAUDE_CODE_WEBFETCH_DEADLINE_MS` 조정 가능); 다수 보안·버그 수정 |
