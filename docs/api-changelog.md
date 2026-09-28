@@ -1,17 +1,33 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-09-21  
+> 마지막 업데이트: 2026-09-28  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 9월
 
+### 2026-09-24
+- **특정 카테고리 거부(refusal) 과금 재개** — `stop_details.category`가 `"bio"`, `"frontier_llm"`, `"reasoning_extraction"`인 출력 전 거부에 대해 일반 요청과 동일한 요율로 과금 재개. 미드스트림 거부는 기존대로 과금. 기타 카테고리의 출력 전 거부는 여전히 미과금. 모든 플랫폼 적용. [How refusals are billed 참고]
+- **Compliance API M365 로컬 세션 엔드포인트 베타 졸업** — Excel, PowerPoint, Word, Outlook (`office_agents*` product_surface) 세션 엔드포인트가 정식 출시. [Sessions on users' machines 참고]
+- **Compliance API Activity Feed 파일명·타이틀 필드 제거** — 파일·프로젝트 문서·아티팩트 활동의 `filename`·`title` 필드가 항상 빈 값 또는 생략 반환(기존 기록 포함). 이름·타이틀 조회는 `read:compliance_user_data` 스코프의 Compliance Access Key 사용 필요.
+
+### 2026-09-23
+- **Cache diagnostics 베타 졸업** — `cache-diagnosis-2026-04-07` 베타 헤더 불필요. 요청에 `diagnostics` 객체 포함 시 옵트인. `POST /v1/messages` 응답에 항상 `diagnostics` 필드 포함 (요청에 diagnostics 없으면 `null`).
+
+### 2026-09-22
+- **Claude Opus 5.5** (`claude-opus-5-5`) 출시 — 장기 에이전틱 코딩·지식 작업용. 1M 컨텍스트, 128k 최대 출력, $4/$20/MTok (Opus 5 대비 40% 저렴). 항상 켜지는 Adaptive Thinking (`thinking: {"type": "disabled"}` → 400 오류). `tool_choice` `any`·`tool` → 400 오류. 컴퓨터 사용 시 `computer_toolset_20260801` 필수 (Claude API·Google Cloud). Claude API, Bedrock, AWS, Google Cloud, Foundry 지원. [Migrating to Claude Opus 5.5 참고]
+- **Fast Mode (Research Preview)**: Claude Opus 5.5에서 사용 가능.
+- **미드-대화 시스템 메시지 내 툴 정의** (베타, `inline-tools-2026-09-15` 헤더) — `tool_addition` 블록으로 툴 정의·스키마 변경·버전 업데이트 가능. 프롬프트 캐시 무효화 없이 서버 툴을 새 버전으로 교체 가능. `mcp-client-2026-09-15` 베타 헤더 병용 시 MCP 툴셋 정의 지원; 응답에 `mcp_tool_listing` 블록으로 서버별 툴 목록 기록.
+
 ### 2026-09-18
 - **Compliance API — Claude in Chrome 세션 트랜스크립트 추가** — Local session endpoints에서 `claude_in_chrome` 서피스(`product_surface: "claude_in_chrome"`) 트랜스크립트 반환 지원 (Claude Enterprise 베타). 기존 Compliance Access Key + `read:compliance_user_data` 스코프로 접근 가능. [Sessions on users' machines 참고]
 
 ### 2026-09-14
 - **Messages API 온디맨드 컴팩션** (`compact-2026-09-04` 베타 헤더) — 최상위 `compaction` 파라미터 전송 시 signed compaction block 반환. 이후 요청에서 해당 블록을 이전 메시지 대신 전송 가능. 최근 턴은 요약 없이 원본 유지 가능. Preserved thinking 있는 모델은 유지된 턴의 thinking 블록 재사용 가능.
+
+### 2026-09-09
+- **Cache diagnostics fingerprint 저장 조건 변경** — `diagnostics` 객체가 포함된 요청에만 fingerprint 저장. 베타 헤더만 전송한 요청은 저장 안 됨(이후 `previous_message_id` 참조 시 `previous_message_not_found` 반환). 모든 턴에 `diagnostics` 포함 권장, 첫 턴은 `"previous_message_id": null`.
 
 ### 2026-09-10
 - **Managed Agents 권한 정책 `auto` 모드 추가** — 서버가 각 에이전트·MCP 툴 호출을 평가해 자동 실행·거부·승인 대기 결정. `agent.tool_use`·`agent.mcp_tool_use` 이벤트의 `evaluation` 필드로 평가 결과 보고. [Let the server evaluate each call with auto 참고]
@@ -31,12 +47,16 @@
 - `thinking.display` 신규 값 `"updates"` (베타, `thinking-display-updates-2026-08-18` 헤더) — 빈 thinking 필드 반환하되 툴 호출 사이 진행 상태 텍스트 포함.
 - Turn-scoped system messages (베타, `mid-conversation-system-clear-at-2026-08-21` 헤더) — `clear_at: "next_user_message"` 설정 시 현재 턴만 적용되고 이후 기록에는 토큰 비용 없이 유지.
 
-### Claude Code CLI (2026-09-21 싱크 기준 최신 버전)
+### Claude Code CLI (2026-09-28 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.283** | `x-claude-code-prompt-id` 게이트웨이 힌트 헤더(`CLAUDE_CODE_GATEWAY_HINT_HEADERS=1`); `availableModelsMatch: "exact"` 관리형 설정(정확 모델 버전만 허용); `deniedModels` 관리형 설정; MCP·WebFetch·WebSearch 출력 OTel span 이벤트(`OTEL_LOG_TOOL_CONTENT=1`); `/doctor prompt-audit` 추가; 다수 MCP·vim·플러그인·빌트인 키 버그 수정; [Cloud sessions] 중복 동작 방지 수정; [Claude Tag] 검색 채널 제한 관리 설정 |
+| **v2.1.282** | `maxProseWidth` 설정(넓은 터미널 본문 최대 너비); `allowClaudeInChromeWithManagedMcp` 관리형 설정; 게이트웨이 `store.readiness_grace_seconds`; 제3자 게이트웨이 웹 검색 결과 포함 대화 400 오류 수정; 세션 재개 시 이전 reasoning 삭제 버그 수정; 다수 버그 수정 |
+| **v2.1.281** | Claude apps 게이트웨이 `blockReadsOutsideWorkingDirectories`·`disableBypassPermissionsMode` Desktop 정책 지원; Bedrock `assume_role` 지원(STS 기반 교차 계정 IAM 역할); Bedrock `guardrail` 지원; `/insights`에 Auto mode 권장 추정치 추가; `"attribution": false` 설정으로 커밋·PR 어트리뷰션 숨기기; MCP URL-mode elicitation (2026-07-28 프로토콜) |
+| **v2.1.280** | **Claude Opus 5.5** (`claude-opus-5-5`) 기본 Opus 모델 지정 — 1M 컨텍스트, $4/$20/MTok, 캐시 읽기 $0.20/MTok; `CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH` 설정(MCP 툴 설명 최대 2,048자 조정); 심링크 경로 쓰기 판단 버그 수정; Auto mode 안전 체크 무한 재시도 버그 수정 |
 | **v2.1.278** | Auto mode 서버 측 분류기 기본 활성화 (Claude API·Enterprise·Bedrock·Vertex·Foundry·게이트웨이) — 분류기 오버헤드 미과금. `CLAUDE_CODE_AUTO_MODE_SERVER=0`으로 옵트아웃. `/status`에 `Auto mode server` 행 추가 |
 | **v2.1.277** | AGENTS.md 지원 추가 — CLAUDE.md 없는 프로젝트에서 AGENTS.md 읽기 (`/config`의 "Project instructions"에서 변경 가능, Bedrock·Vertex·Foundry 미지원); `CLAUDE_GATEWAY_PROXY_IS_EGRESS_BOUNDARY=1` 플래그(출구 경계 게이트웨이 프록시용); `headers:` 맵 게이트웨이 업스트림 정적 헤더 지원; 배경 작업 완료 알림 개선; `claude -p` 및 Agent SDK 내부 오류 시 exit code 1 반환 수정; 다수 버그 수정 |
 | **v2.1.276** | `ANTHROPIC_BASE_URL` 프록시 지정 시 모든 요청 400 오류 수정 (v2.1.275 회귀) |

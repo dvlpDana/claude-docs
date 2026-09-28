@@ -1,6 +1,6 @@
 # Claude 모델 레퍼런스
 
-> 마지막 업데이트: 2026-09-21  
+> 마지막 업데이트: 2026-09-28  
 > 소스: https://platform.claude.com/docs/en/about-claude/models/overview
 
 ---
@@ -13,6 +13,7 @@
 | **Claude Mythos 5.1** | `claude-mythos-5-1` | 1M | 128k | $10/MTok | $50/MTok |
 | **Claude Fable 5** | `claude-fable-5` | 1M | 128k | $10/MTok | $50/MTok |
 | **Claude Mythos 5** | `claude-mythos-5` | 1M | 128k | $10/MTok | $50/MTok |
+| **Claude Opus 5.5** ⭐ | `claude-opus-5-5` | 1M | 128k | $4/MTok | $20/MTok |
 | **Claude Opus 5** | `claude-opus-5` | 1M | 128k | $5/MTok‡ | $25/MTok‡ |
 | **Claude Opus 4.8** | `claude-opus-4-8` | 1M | 128k | $5/MTok | $25/MTok |
 | **Claude Opus 4.7** | `claude-opus-4-7` | 1M | 128k | $5/MTok | $25/MTok |
@@ -20,6 +21,7 @@
 | **Claude Sonnet 4.6** | `claude-sonnet-4-6` | 1M | 128k | $3/MTok | $15/MTok |
 | **Claude Haiku 4.5** | `claude-haiku-4-5-20251001` | 200k | 64k | $1/MTok | $5/MTok |
 
+> **Claude Opus 5.5** (`claude-opus-5-5`): 2026-09-22 출시, 새 기본 Opus 모델. 1M 컨텍스트, 128k 출력, $4/$20/MTok (캐시 읽기 $0.20/MTok). Opus 5 대비 40% 저렴. 항상 켜지는 Adaptive Thinking (비활성화 불가). `tool_choice` `any`·`tool` 미지원. Claude API, Bedrock, AWS, Google Cloud, Foundry 지원. 지식 컷오프 Jun 2026.  
 > **Claude Fable 5.1** (`claude-fable-5-1`): 2026-09-01 출시, 새 기본 Fable 모델. 1M 컨텍스트, $10/$50/MTok, 캐시 읽기 $0.25/MTok (0.025×). Fable 5에서 성능·캐싱 개선. `tool_choice` `any`·`tool` 미지원.  
 > **Claude Mythos 5.1** (`claude-mythos-5-1`): 2026-09-01 출시, Project Glasswing 참여자 대상. Fable 5.1과 동일 사양·가격. `tool_choice` `any`·`tool` 미지원.  
 > **Claude Fable 5**: Mythos-class 모델, 역대 일반 공개 최고 성능. 1M 컨텍스트 기본 내장. (2026-06-09 GA). ⚠️ Fable 5.1이 새 기본 Fable 모델로 대체.  
