@@ -1,11 +1,40 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-09-28  
+> 마지막 업데이트: 2026-10-05  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
+## 2026년 10월
+
+### Claude Code CLI (2026-10-05 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.289** | 플러그인 훅 `agent.spawn` 추가(팀원 스폰, 플러그인 훅 이벤트에 단일 에이전트 ID); `$.agent.list()`에 idle·waiting 상태 추가; 중첩 복합 쉘 명령 deny/ask 규칙 수정; 짧은 코드 블록 `<script>` 태그로 터미널 프리즈 수정; 심링크 통한 `Read` deny 규칙 적용 수정; 다수 플러그인·MCP·세션 버그 수정 |
+| **v2.1.288** | `$.ui.selection()` 추가(mod에서 마지막 선택 텍스트 반환); 내장 `gh api` 추가(GitHub CLI 없는 클라우드 세션용); Ctrl+C 복구 — 빈 프롬프트에서 ↑ 누르면 초안 복원(붙여넣기·이미지 포함); MCP 서버 OAuth 스코프 추가 요청 시 재인증 프롬프트; `/code-review`에 `--max-findings <n>|all` 옵션 추가; agents 뷰 Ctrl+F 세션 검색·Alt+↑/↓ 그룹 간 이동; 다수 버그 수정(컴팩션·재개·Bedrock·Mantle·Cowork·플러그인) |
+| **v2.1.287** | **Claude Mods** 추가 — 플러그인이 더 깊은 동작을 수정 가능; **"You should know"** 내장 mod — 사이드 에이전트가 놓칠 수 있는 사항 플래그(`/plugin enable cc-plugin-you-should-know@builtin`); agents 뷰 `n:<text>` 필터; MCP 서버 URL 프롬프트(2025-11-25 프로토콜) 지원; 다수 버그 수정(Fast mode 원격 세션, Remote Control 재연결, Bedrock Guardrails, 훅 asyncRewake 반복 수정 등) |
+| **v2.1.286** | 권한 프롬프트 스택 "2 of 5" 카운트 표시; [VSCode] 북마크(Claude 응답 저장·Bookmarks 패널) 추가; 다수 버그 수정(MCP 커넥터 타임아웃·동시 gcpAuth 재인증·세션 이력 손실·Remote Control 큐·플러그인 누락·서브에이전트 hand-back 이름 표시·Workflow 재시작·클라우드 세션·Claude Tag 등) |
+| **v2.1.285** | `CLAUDE_CODE_DISABLE_WEB_FETCH` 환경변수; `claude --desktop` (Claude Desktop 앱 열기, `--continue`/`--resume` 지원); `claude plugin configure <plugin>`; `allowedProviders` 관리형 설정(허용 API 프로바이더 제한); 다수 버그 수정(SDK fork 서브에이전트·플러그인 SSH·클라우드 세션·파일 첨부·MCP·vim 모드 등) |
+| **v2.1.284** | **Claude Sonnet 5.5** (`claude-sonnet-5-5`) Anthropic API 기본 Sonnet 모델 지정 — 1M 컨텍스트, $2/$10/MTok, 캐시 읽기 $0.20/MTok; Auto mode 작업 디렉토리 외 읽기 "Yes, but ask again" 옵션 추가; `/mcp reconnect all` 추가; 다수 버그 수정(손상된 스트림 JSON 오류 표시·오버로드 재시도·컴팩션 후 prompt too long·세션 모델 사용불가 메시지·MCP 도구 10초 대기 등) |
+
+---
+
 ## 2026년 9월
+
+### 2026-09-30
+- **Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`) 은퇴 예고** — 2026-11-30 지원 종료 예정. Claude Sonnet 5.5로 마이그레이션 권장. [Migration guide 참고]
+
+### 2026-09-28
+- **Claude Sonnet 5.5** (`claude-sonnet-5-5`) 출시 — 새 기본 Sonnet 모델. 1M 컨텍스트, 128k 최대 출력, $2/$10/MTok, 캐시 읽기 $0.20/MTok. Claude API, Bedrock, AWS, Google Cloud, Foundry 지원. 브레이킹 체인지:
+  - Thinking 비활성화 변경: `thinking: {"type": "between_tools"}` 로 전환 (기존 `"disabled"`는 `high` 이상에서 400 오류)
+  - `tool_choice` `any`·`tool` → 400 오류
+  - 이전 `computer_20251124` 툴 미지원 (Claude API·Google Cloud)
+  - Advisor Tool: Opus 4.8·4.7·Sonnet 5 어드바이저 불가
+  - 계정 바운드 thinking 블록 — 다른 계정으로 전송 시 자동 제거
+  - [마이그레이션 가이드](https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide) 참고
 
 ### 2026-09-24
 - **특정 카테고리 거부(refusal) 과금 재개** — `stop_details.category`가 `"bio"`, `"frontier_llm"`, `"reasoning_extraction"`인 출력 전 거부에 대해 일반 요청과 동일한 요율로 과금 재개. 미드스트림 거부는 기존대로 과금. 기타 카테고리의 출력 전 거부는 여전히 미과금. 모든 플랫폼 적용. [How refusals are billed 참고]
