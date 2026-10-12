@@ -20,9 +20,11 @@
 | **Claude Sonnet 5.5** ⭐ | `claude-sonnet-5-5` | 1M | 128k | $2/MTok | $10/MTok |
 | **Claude Sonnet 5** | `claude-sonnet-5` | 1M | 128k | $2/MTok | $10/MTok |
 | **Claude Sonnet 4.6** | `claude-sonnet-4-6` | 1M | 128k | $3/MTok | $15/MTok |
+| **Claude Haiku 5.5** ⭐ | `claude-haiku-5-5` | 1M | - | $0.10/MTok | $0.50/MTok |
 | **Claude Haiku 4.5** | `claude-haiku-4-5-20251001` | 200k | 64k | $1/MTok | $5/MTok |
 
-> **Claude Sonnet 5.5** (`claude-sonnet-5-5`): 2026-09-28 출시, 새 기본 Sonnet 모델. 1M 컨텍스트, 128k 출력, $2/$10/MTok (캐시 읽기 $0.20/MTok). Adaptive Thinking 항상 켜짐 (`thinking: {"type": "between_tools"}` 로 부분 제어 가능). `tool_choice` `any`·`tool` 미지원 (→ 400 오류). 이전 `computer_20251124` 툴 미지원. Opus 4.8·4.7·Sonnet 5를 어드바이저로 사용 불가. 지식 컷오프 Jun 2026. 계정 바운드 thinking 블록 (다른 계정으로 전송 시 자동 제거). [마이그레이션 가이드 참고]  
+> **Claude Haiku 5.5** (`claude-haiku-5-5`): 2026-10 출시 (v2.1.293), 새 기본 Haiku 모델. 1M 컨텍스트, $0.10/$0.50/MTok (100K+ 프롬프트 $0.50/$2.50/MTok).  
+> **Claude Sonnet 5.5** (`claude-sonnet-5-5`): 2026-09-28 출시, 새 기본 Sonnet 모델. 1M 컨텍스트, 128k 출력, $2/$10/MTok (캐시 읽기 $0.10/MTok — 2026-10 가격 수정). Adaptive Thinking 항상 켜짐 (`thinking: {"type": "between_tools"}` 로 부분 제어 가능). `tool_choice` `any`·`tool` 미지원 (→ 400 오류). 이전 `computer_20251124` 툴 미지원. Opus 4.8·4.7·Sonnet 5를 어드바이저로 사용 불가. 지식 컷오프 Jun 2026. 계정 바운드 thinking 블록 (다른 계정으로 전송 시 자동 제거). [마이그레이션 가이드 참고]  
 > **Claude Opus 5.5** (`claude-opus-5-5`): 2026-09-22 출시, 새 기본 Opus 모델. 1M 컨텍스트, 128k 출력, $4/$20/MTok (캐시 읽기 $0.20/MTok). Opus 5 대비 40% 저렴. 항상 켜지는 Adaptive Thinking (비활성화 불가). `tool_choice` `any`·`tool` 미지원. Claude API, Bedrock, AWS, Google Cloud, Foundry 지원. 지식 컷오프 Jun 2026.  
 > **Claude Fable 5.1** (`claude-fable-5-1`): 2026-09-01 출시, 새 기본 Fable 모델. 1M 컨텍스트, $10/$50/MTok, 캐시 읽기 $0.25/MTok (0.025×). Fable 5에서 성능·캐싱 개선. `tool_choice` `any`·`tool` 미지원.  
 > **Claude Mythos 5.1** (`claude-mythos-5-1`): 2026-09-01 출시, Project Glasswing 참여자 대상. Fable 5.1과 동일 사양·가격. `tool_choice` `any`·`tool` 미지원.  

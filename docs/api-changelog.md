@@ -7,12 +7,19 @@
 
 ## 2026년 10월
 
-### Claude Code CLI (2026-10-05 싱크 기준 최신 버전)
+### Claude Code CLI (2026-10-12 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.296** | `code` 키 Claude apps 게이트웨이 `managed.policies[]` 추가(Claude Desktop Code 탭 적용); `autoCompactWindow` 서브에이전트 프론트매터 추가; `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` 환경변수; `allow_large` Read 툴 옵션; Sonnet 5.5 캐시 읽기 가격 $0.20 → **$0.10/MTok** 수정; 내장 dataviz 스킬 업데이트; MCP 툴 설명 기본 한도 2,048 → **4,096자** 확대; 다수 보안·버그 수정 (관리형 설정 훅 거부·PostToolUse 훅·헤드리스 세션·자체 호스팅 러너·Bash 권한 등) |
+| **v2.1.295** | `onFailure: "block"` 훅 옵션(훅 실패 시 액션 차단); Program Status Protocol (OSC 7501) 지원; `timeouts.upstream_ttfb_ms` 게이트웨이 업스트림; `models` 목록 게이트웨이 업스트림 필터; `$.ui.notify` mod API; 다수 보안·버그 수정 (MCP 재연결·캐시 미스·vim 모드·터미널 프리즈·클라우드 세션·Claude Tag 등) |
+| **v2.1.294** | `prompt`·`agent` 훅 인스트럭션 형식 보안 수정 (차단 대상 허용 버그 수정) |
+| **v2.1.293** | **Claude Haiku 5.5** (`claude-haiku-5-5`) 추가 — 새 기본 Haiku 모델, 1M 컨텍스트, $0.10/$0.50/MTok (100K+ 프롬프트 $0.50/$2.50); `agentType` subagentStatusLine 페이로드; `isDeferred` `$.tool.register` mod 옵션; 컨텍스트 컴팩션 후 완료 작업 재실행 버그 수정 |
+| **v2.1.292** | `--marketplace <source>` `claude plugin install` 플래그; Agent 툴 `effort` 파라미터; `CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS` 환경변수; `prompt.autocomplete` mod 이벤트(자동완성 목록 커스터마이징) |
+| **v2.1.291** | 2.1.290·2.1.288 회귀 수정 (클라우드 세션 권한 프롬프트 응답 유실·세션 종료 시 메시지 소실) |
+| **v2.1.290** | `serverToolUses` `turn.step` 훅 결과 추가(어드바이저 API 툴 호출 정보); `agentId` `tool.check` 이벤트; `ceiling` `tool.check` 훅 필드(조직 요구 승인 레벨); `ThemeKey`·`Color` 플러그인 훅 타입 추가 |
 | **v2.1.289** | 플러그인 훅 `agent.spawn` 추가(팀원 스폰, 플러그인 훅 이벤트에 단일 에이전트 ID); `$.agent.list()`에 idle·waiting 상태 추가; 중첩 복합 쉘 명령 deny/ask 규칙 수정; 짧은 코드 블록 `<script>` 태그로 터미널 프리즈 수정; 심링크 통한 `Read` deny 규칙 적용 수정; 다수 플러그인·MCP·세션 버그 수정 |
 | **v2.1.288** | `$.ui.selection()` 추가(mod에서 마지막 선택 텍스트 반환); 내장 `gh api` 추가(GitHub CLI 없는 클라우드 세션용); Ctrl+C 복구 — 빈 프롬프트에서 ↑ 누르면 초안 복원(붙여넣기·이미지 포함); MCP 서버 OAuth 스코프 추가 요청 시 재인증 프롬프트; `/code-review`에 `--max-findings <n>|all` 옵션 추가; agents 뷰 Ctrl+F 세션 검색·Alt+↑/↓ 그룹 간 이동; 다수 버그 수정(컴팩션·재개·Bedrock·Mantle·Cowork·플러그인) |
 | **v2.1.287** | **Claude Mods** 추가 — 플러그인이 더 깊은 동작을 수정 가능; **"You should know"** 내장 mod — 사이드 에이전트가 놓칠 수 있는 사항 플래그(`/plugin enable cc-plugin-you-should-know@builtin`); agents 뷰 `n:<text>` 필터; MCP 서버 URL 프롬프트(2025-11-25 프로토콜) 지원; 다수 버그 수정(Fast mode 원격 세션, Remote Control 재연결, Bedrock Guardrails, 훅 asyncRewake 반복 수정 등) |
