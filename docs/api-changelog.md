@@ -7,12 +7,16 @@
 
 ## 2026년 10월
 
-### Claude Code CLI (2026-10-12 싱크 기준 최신 버전)
+### Claude Code CLI (2026-10-19 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.303** | 버그 수정 및 안정성 개선 |
+| **v2.1.302** | `CLAUDE_CODE_AUTO_MODE_MODEL` 환경변수(클라이언트 측 Auto Mode 분류기 모델 선택); `/config`에 `Idle compaction` 행 추가(아이들 컴팩션 on/off 설정); 독립형 Claude Design(claude.ai/design) 2026-12-14 종료 예정 공지; 다수 버그 수정 (Prompt too long 오류·Vertex/Bedrock 세션 전환·Read 툴 대형 이미지 메모리·/autocompact 및 /effort 모델 저장·캐시 미스·플러그인 및 마켓플레이스 버그 등); [Cloud sessions] 루틴 마지막 실행 실패 사유 배너; [Claude Tag] 다수 수정 및 개선 (HEIC/SVG/TIFF/BMP 이미지 지원 등) |
+| **v2.1.301** | `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` 환경변수; `claude-api` 스킬에 OpenTelemetry 추적 가이드 추가; vim 모드 `%` 매칭 괄호 점프 지원; mod `Input`에 `rows` 다중행 텍스트 필드 추가; OTel `tool_decision` 이벤트에 `classifier_verdict`·`permission_mode`·`classifier_category` 속성 추가; 다수 버그 수정 (워크트리 종료·fable 별칭 폴백·디스크 꽉 참 오류·빔 모드 등); [VSCode] LaTeX 수학 렌더링 추가; [VSCode] Pro·Max 플랜 "사용량 더 받기" 링크 추가 |
+| **v2.1.300** | mod 프롬프트 데코레이션에 `virtualText` 추가(프롬프트 박스 내 입력·제출 안 되는 텍스트); OTel `api_request` 이벤트에 `cache_creation_5m_tokens`·`cache_creation_1h_tokens` 분리; mod에 `$.ui.view({ agentId })` 추가(에이전트 트랜스크립트 뷰 전환); `/advisor` Claude Platform on AWS 지원; OTel GenAI 시맨틱 컨벤션 속성 추가(`gen_ai.provider.name` 등); workflow agent `agent.spawn` 훅에서 `prompt`·`model` 재작성 지원; `prompt.change` mod 훅 추가(히스토리 복원·클리어 등 프롬프트 텍스트 변경 시 이벤트); 다수 버그 수정 및 개선 |
 | **v2.1.296** | `code` 키 Claude apps 게이트웨이 `managed.policies[]` 추가(Claude Desktop Code 탭 적용); `autoCompactWindow` 서브에이전트 프론트매터 추가; `CLAUDE_CODE_WORKFLOW_SUBAGENT_MODEL` 환경변수; `allow_large` Read 툴 옵션; Sonnet 5.5 캐시 읽기 가격 $0.20 → **$0.10/MTok** 수정; 내장 dataviz 스킬 업데이트; MCP 툴 설명 기본 한도 2,048 → **4,096자** 확대; 다수 보안·버그 수정 (관리형 설정 훅 거부·PostToolUse 훅·헤드리스 세션·자체 호스팅 러너·Bash 권한 등) |
 | **v2.1.295** | `onFailure: "block"` 훅 옵션(훅 실패 시 액션 차단); Program Status Protocol (OSC 7501) 지원; `timeouts.upstream_ttfb_ms` 게이트웨이 업스트림; `models` 목록 게이트웨이 업스트림 필터; `$.ui.notify` mod API; 다수 보안·버그 수정 (MCP 재연결·캐시 미스·vim 모드·터미널 프리즈·클라우드 세션·Claude Tag 등) |
 | **v2.1.294** | `prompt`·`agent` 훅 인스트럭션 형식 보안 수정 (차단 대상 허용 버그 수정) |
