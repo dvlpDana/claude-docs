@@ -1,6 +1,6 @@
 # Claude 모델 레퍼런스
 
-> 마지막 업데이트: 2026-10-05  
+> 마지막 업데이트: 2026-10-26  
 > 소스: https://platform.claude.com/docs/en/about-claude/models/overview
 
 ---
@@ -20,7 +20,7 @@
 | **Claude Sonnet 5.5** ⭐ | `claude-sonnet-5-5` | 1M | 128k | $2/MTok | $10/MTok |
 | **Claude Sonnet 5** | `claude-sonnet-5` | 1M | 128k | $2/MTok | $10/MTok |
 | **Claude Sonnet 4.6** | `claude-sonnet-4-6` | 1M | 128k | $3/MTok | $15/MTok |
-| **Claude Haiku 5.5** ⭐ | `claude-haiku-5-5` | 1M | - | $0.10/MTok | $0.50/MTok |
+| **Claude Haiku 5.5** ⭐ | `claude-haiku-5-5` | 1M | 128k | $0.10/MTok | $0.50/MTok |
 | **Claude Haiku 4.5** | `claude-haiku-4-5-20251001` | 200k | 64k | $1/MTok | $5/MTok |
 
 > **Claude Haiku 5.5** (`claude-haiku-5-5`): 2026-10 출시 (v2.1.293), 새 기본 Haiku 모델. 1M 컨텍스트, $0.10/$0.50/MTok (100K+ 프롬프트 $0.50/$2.50/MTok).  
@@ -49,7 +49,8 @@
 |--------|---------|---------|---------|---------|---------|--------|---------|---------|----------|---------|
 | Claude API | `claude-fable-5-1` | `claude-mythos-5-1` | `claude-opus-5-5` | `claude-sonnet-5-5` | `claude-fable-5` | `claude-opus-5` | `claude-opus-4-8` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5-20251001` |
 | AWS Bedrock | `anthropic.claude-fable-5-1`※ | 제한 제공 | `anthropic.claude-opus-5-5`※ | `anthropic.claude-sonnet-5-5`※ | `anthropic.claude-fable-5` | `anthropic.claude-opus-5`※ | `anthropic.claude-opus-4-8` | `anthropic.claude-sonnet-5` | `anthropic.claude-sonnet-4-6` | `anthropic.claude-haiku-4-5-20251001-v1:0` |
-| Vertex AI | `claude-fable-5-1`※ | 제한 제공 | `claude-opus-5-5`※ | `claude-sonnet-5-5`※ | `claude-fable-5` | `claude-opus-5`※ | `claude-opus-4-8` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5@20251001` |
+| Vertex AI (Google managed) | `claude-fable-5-1`※ | 제한 제공 | `claude-opus-5-5`※ | `claude-sonnet-5-5`※ | `claude-fable-5` | `claude-opus-5`※ | `claude-opus-4-8` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5@20251001` |
+| Google Cloud (Anthropic managed) ★ | `claude-fable-5-1` | - | `claude-opus-5-5` | `claude-sonnet-5-5` | - | - | - | - | - | - |
 
 ---
 

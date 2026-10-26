@@ -1,18 +1,43 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-10-05  
+> 마지막 업데이트: 2026-10-26  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 10월
 
-### Claude Code CLI (2026-10-19 싱크 기준 최신 버전)
+### 2026-10-22
+- **Claude Models on Google Cloud (Anthropic managed)** 출시 — Anthropic이 운영하는 Claude API를 Google Cloud 프로젝트를 통해 접근 가능. Google Cloud IAM으로 접근 제어, Google Cloud Marketplace로 청구. Claude Opus 5.5에서 Fast Mode 지원.
+
+### 2026-10-21
+- **API 버전 2026-10-21** 출시 — [마이그레이션 가이드](https://platform.claude.com/docs/en/release-notes/api-version-2026-10-21) 참고.
+- **클라이언트 SDK 및 ant CLI 주요 버전 업데이트** (기본 API 버전 2026-10-21):
+  - Python SDK 2.0.0, TypeScript SDK 1.0.0, C# SDK 13.0.0
+  - Go SDK 2.0.0, Java SDK 3.0.0, PHP SDK 1.0.0, Ruby SDK 2.0.0
+  - ant CLI 2.0.0
+  - ⚠️ API 버전과 무관한 브레이킹 체인지 포함 + 라이선스 MIT → Apache 2.0 변경
+- **User Profiles에 `enforcement_status`·`enforcement_actions` 필드 추가** — 최종 고객 제한·차단 여부 확인 가능. `enforcement_status[]` 필터로 제한·차단 프로필 목록 조회 지원.
+
+### 2026-10-20
+- **Claude Tag API** Enterprise 베타 공개 (`experimental-claude-tag-2026-10-21` 헤더) — Slack 채널·워크스페이스 설정 조회·변경, Access 번들 연결. Admin API 키 + `read:claude_tag`/`write:claude_tag` 스코프 필요.
+- **Inference hooks** Enterprise 정식 출시 (베타 종료).
+- **User Profiles** 출시 — 각 API 요청에 최종 고객 지정 가능. 안전 조치를 전체 조직 대신 개별 최종 고객에게 적용.
+- **Organization Webhooks** Admin API 베타 (`webhooks-2026-10-07` 헤더) — 사용자 프로필 제한·해제 이벤트 수신. 접근 요청: Anthropic 계정팀.
+- **Web Fetch 조직 수준 비활성화** — Claude Console 설정에서 조직 전체 web fetch 비활성화 가능. 비활성화 시 Messages API 요청에서 400 오류, Managed Agents에서는 에러 결과 반환.
+
+### Claude Code CLI (2026-10-26 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.310** | Monitor 툴 추가 (Bedrock·Vertex·Foundry 및 텔레메트리 비활성 세션 지원); 일부 게이트웨이에서 `effort-2025-11-24` 베타 값 거부 시 재시도; 배경 정리가 붙여넣기 이미지 등 최근 파일 삭제하던 버그 수정; Prompt too long 오류 후 컴팩션이 너무 많이 남기던 수정; [VSCode] 플랜 리뷰 카드 Enter 키 동작 수정; [Cloud sessions] Enterprise 커스텀 역할에 클라우드 세션·Remote Control 권한 추가; 다수 버그 수정 |
+| **v2.1.309** | 샌드박스 Bash 명령이 샌드박스 밖 쉘 스타트업 파일 실행하던 수정; macOS 샌드박스 `denyWrite` glob 심링크 경로 미적용 수정; 워크트리 격리 zsh 산술 명령 차단 수정; `sed -i` 표준 Bash 프롬프트 처리 변경; 다수 보안·버그 수정 |
+| **v2.1.308** | 버그 수정 및 안정성 개선 |
+| **v2.1.307** | `/claude-api api-version` 추가 (API 버전 2026-10-21로 이전); `claude_code.safety_event` OTel 이벤트 추가; `CLAUDE_CODE_DISABLE_1M_CONTEXT` + 모델 별칭 오류 수정; HTTP MCP 툴 호출 연결 끊김 시 중복 전송 수정; `/permissions` > 최근 거부 목록 수정; 다수 버그 수정 |
+| **v2.1.306** | 클라우드 세션에서 `claude -p` "Not logged in" 오류 수정; MCP 툴 다수 시 "prompt is too long" 오류 수정 |
+| **v2.1.305** | `sandbox.allowNestedUserNamespaces` 설정 추가 (Chromium·rootless podman 지원); `CLAUDE_CODE_RETRY_WATCHDOG_USAGE_LIMIT_RECHECK_MS` 추가; Vertex·Bedrock에서 ToolSearch 거부 시 모든 요청 실패하던 수정 (2.1.304 회귀); 디스크 꽉 참 ENOSPC 오류 메시지 개선; 다수 버그 수정 |
 | **v2.1.303** | 버그 수정 및 안정성 개선 |
 | **v2.1.302** | `CLAUDE_CODE_AUTO_MODE_MODEL` 환경변수(클라이언트 측 Auto Mode 분류기 모델 선택); `/config`에 `Idle compaction` 행 추가(아이들 컴팩션 on/off 설정); 독립형 Claude Design(claude.ai/design) 2026-12-14 종료 예정 공지; 다수 버그 수정 (Prompt too long 오류·Vertex/Bedrock 세션 전환·Read 툴 대형 이미지 메모리·/autocompact 및 /effort 모델 저장·캐시 미스·플러그인 및 마켓플레이스 버그 등); [Cloud sessions] 루틴 마지막 실행 실패 사유 배너; [Claude Tag] 다수 수정 및 개선 (HEIC/SVG/TIFF/BMP 이미지 지원 등) |
 | **v2.1.301** | `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS` 환경변수; `claude-api` 스킬에 OpenTelemetry 추적 가이드 추가; vim 모드 `%` 매칭 괄호 점프 지원; mod `Input`에 `rows` 다중행 텍스트 필드 추가; OTel `tool_decision` 이벤트에 `classifier_verdict`·`permission_mode`·`classifier_category` 속성 추가; 다수 버그 수정 (워크트리 종료·fable 별칭 폴백·디스크 꽉 참 오류·빔 모드 등); [VSCode] LaTeX 수학 렌더링 추가; [VSCode] Pro·Max 플랜 "사용량 더 받기" 링크 추가 |
