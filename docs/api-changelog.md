@@ -1,6 +1,6 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-10-26  
+> 마지막 업데이트: 2026-11-02  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
@@ -26,12 +26,15 @@
 - **Organization Webhooks** Admin API 베타 (`webhooks-2026-10-07` 헤더) — 사용자 프로필 제한·해제 이벤트 수신. 접근 요청: Anthropic 계정팀.
 - **Web Fetch 조직 수준 비활성화** — Claude Console 설정에서 조직 전체 web fetch 비활성화 가능. 비활성화 시 Messages API 요청에서 400 오류, Managed Agents에서는 에러 결과 반환.
 
-### Claude Code CLI (2026-10-26 싱크 기준 최신 버전)
+### Claude Code CLI (2026-11-02 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.316** | `CLAUDE_CODE_DISABLE_ULTRATHINK` 추가(ultrathink 키워드 비활성화); Claude apps 게이트웨이 풀드 그룹 예산(`pooled_budget`) 추가; `CLAUDE_CODE_SUBAGENT_EFFORT` 추가(서브에이전트 기본 노력 레벨 설정); `managed.policy_mode: layered` 추가(여러 정책 병합 적용); **Opus 4.8 Fast Mode 2026-10-30 deprecated — 2026-11-30 제거 예정, Opus 5.5로 마이그레이션 권장**; 셸 명령 Claude Code 종료 시 남아있던 버그 수정; SHELLOPTS 내보내기 시 bash 스크립트 첫 명령 후 중단 수정; [VSCode] Claude apps 게이트웨이 채팅 패널 로그인 추가; [Cloud sessions] MCP 서버 폼 카드 추가; [Code Review] 심각도별 분석 카드 추가; 다수 버그 수정 |
+| **v2.1.314** | `permissions.blockWritesOutsideWorkingDirectories` 추가(작업 디렉토리 외 쓰기 차단); Claude apps 게이트웨이 업스트림에 `groups` 목록 추가(IdP 그룹 기반 접근 제어); Bedrock 업스트림 `guardrail_trace` 추가; VS Code·Claude Desktop Code 탭 아이들 컴팩션 추가; 노력 레벨 캡 초과 시 "Invalid effort level" 수정; `claude -p` 시작 실패 시 exit code 0 대신 1 반환 수정; 반복 거부 게이트웨이에서 tool search 없이 재전송 수정; MCP 로그아웃 성공 허위 보고 수정; 다수 버그 수정 |
+| **v2.1.312** | Claude apps 게이트웨이 `oidc.user_id_claim` 추가(sub 외 클레임으로 사용자 식별); 전체화면 클릭 전송 추가(대기 메시지 힌트 클릭 즉시 전송); VS Code 확장에서 로그인 후 관리형 설정 미적용 수정; 매우 큰 CLAUDE.md 일부만 읽고 덮어쓰던 버그 수정; PDF Read 툴 간헐적 실패 수정; 다수 버그 수정 |
 | **v2.1.310** | Monitor 툴 추가 (Bedrock·Vertex·Foundry 및 텔레메트리 비활성 세션 지원); 일부 게이트웨이에서 `effort-2025-11-24` 베타 값 거부 시 재시도; 배경 정리가 붙여넣기 이미지 등 최근 파일 삭제하던 버그 수정; Prompt too long 오류 후 컴팩션이 너무 많이 남기던 수정; [VSCode] 플랜 리뷰 카드 Enter 키 동작 수정; [Cloud sessions] Enterprise 커스텀 역할에 클라우드 세션·Remote Control 권한 추가; 다수 버그 수정 |
 | **v2.1.309** | 샌드박스 Bash 명령이 샌드박스 밖 쉘 스타트업 파일 실행하던 수정; macOS 샌드박스 `denyWrite` glob 심링크 경로 미적용 수정; 워크트리 격리 zsh 산술 명령 차단 수정; `sed -i` 표준 Bash 프롬프트 처리 변경; 다수 보안·버그 수정 |
 | **v2.1.308** | 버그 수정 및 안정성 개선 |

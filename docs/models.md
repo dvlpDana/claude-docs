@@ -1,6 +1,6 @@
 # Claude 모델 레퍼런스
 
-> 마지막 업데이트: 2026-10-26  
+> 마지막 업데이트: 2026-11-02  
 > 소스: https://platform.claude.com/docs/en/about-claude/models/overview
 
 ---
@@ -79,7 +79,7 @@
 ## Fast Mode
 
 - **Opus 5** 지원 — Fast Mode $10/$50/MTok (v2.1.219)
-- **Opus 4.8** 지원 (Claude API only); Max 플랜 사용자 기본 활성화
+- **Opus 4.8** 지원 (Claude API only); Max 플랜 사용자 기본 활성화 — ⚠️ 2026-10-30 deprecated, **2026-11-30 제거 예정**. 이후 요청 시 오류 반환(표준 Opus 4.8 폴백 없음). Opus 5.5로 마이그레이션 권장
 - ~~Opus 4.7~~: 2026-07-24 제거됨 (v2.1.219) → `speed: "fast"` 요청 시 오류 반환. **Opus 5·4.8로 마이그레이션 필요**
 - ~~Opus 4.6~~: 2026-06-29 제거됨
 - 최대 2.5배 빠른 출력 토큰 생성 (프리미엄 가격)
