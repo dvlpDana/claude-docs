@@ -1,6 +1,6 @@
 # Claude 모델 레퍼런스
 
-> 마지막 업데이트: 2026-11-02  
+> 마지막 업데이트: 2026-11-09  
 > 소스: https://platform.claude.com/docs/en/about-claude/models/overview
 
 ---
@@ -21,7 +21,6 @@
 | **Claude Sonnet 5** | `claude-sonnet-5` | 1M | 128k | $2/MTok | $10/MTok |
 | **Claude Sonnet 4.6** | `claude-sonnet-4-6` | 1M | 128k | $3/MTok | $15/MTok |
 | **Claude Haiku 5.5** ⭐ | `claude-haiku-5-5` | 1M | 128k | $0.10/MTok | $0.50/MTok |
-| **Claude Haiku 4.5** | `claude-haiku-4-5-20251001` | 200k | 64k | $1/MTok | $5/MTok |
 
 > **Claude Haiku 5.5** (`claude-haiku-5-5`): 2026-10 출시 (v2.1.293), 새 기본 Haiku 모델. 1M 컨텍스트, $0.10/$0.50/MTok (100K+ 프롬프트 $0.50/$2.50/MTok).  
 > **Claude Sonnet 5.5** (`claude-sonnet-5-5`): 2026-09-28 출시, 새 기본 Sonnet 모델. 1M 컨텍스트, 128k 출력, $2/$10/MTok (캐시 읽기 $0.10/MTok — 2026-10 가격 수정). Adaptive Thinking 항상 켜짐 (`thinking: {"type": "between_tools"}` 로 부분 제어 가능). `tool_choice` `any`·`tool` 미지원 (→ 400 오류). 이전 `computer_20251124` 툴 미지원. Opus 4.8·4.7·Sonnet 5를 어드바이저로 사용 불가. 지식 컷오프 Jun 2026. 계정 바운드 thinking 블록 (다른 계정으로 전송 시 자동 제거). [마이그레이션 가이드 참고]  
@@ -36,21 +35,25 @@
 
 ### 특징 비교
 
-| 기능 | Fable 5 | Mythos 5 | Opus 5 | Opus 4.8 | Opus 4.7 | Sonnet 5.5 | Sonnet 5 | Sonnet 4.6 | Haiku 4.5 |
-|------|---------|---------|--------|---------|---------|----------|---------|----------|---------|
-| Extended Thinking | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| Adaptive Thinking | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ (항상 ON) | ✅ (기본 ON) | ✅ | ❌ |
-| Auto Mode | ✅ | - | ✅ | ✅ | ✅ | - | - | - | - |
-| 지식 컷오프 (신뢰) | 2026-06 | 2026-01 | 2026-05 | 2026-01 | 2026-01 | 2026-06 | 2026-01 | 2025-08 | 2025-02 |
+| 기능 | Fable 5.1 | Opus 5.5 | Sonnet 5.5 | Haiku 5.5 | Fable 5 | Opus 5 | Opus 4.8 | Sonnet 5 | Sonnet 4.6 |
+|------|---------|---------|----------|---------|--------|--------|---------|---------|----------|
+| Extended Thinking | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| Adaptive Thinking | ✅ (항상 ON) | ✅ (항상 ON) | ✅ (항상 ON) | ✅ | ✅ | ✅ | ✅ | ✅ (기본 ON) | ✅ |
+| Auto Mode | ✅ | ✅ | - | - | ✅ | ✅ | ✅ | - | - |
+| 기본 Effort | high | medium | high | medium | high | medium | medium | high | medium |
+| 지식 컷오프 (신뢰) | 2026-06 | 2026-06 | 2026-06 | 2026-06 | 2026-06 | 2026-05 | 2026-01 | 2026-01 | 2025-08 |
+| 은퇴 보장 | 2027-09-01~ | 2027-09-22~ | 2027-09-28~ | 2027-10-07~ | - | - | - | - | - |
 
 ### 플랫폼별 ID
 
-| 플랫폼 | Fable 5.1 | Mythos 5.1 | Opus 5.5 | Sonnet 5.5 | Fable 5 | Opus 5 | Opus 4.8 | Sonnet 5 | Sonnet 4.6 | Haiku 4.5 |
-|--------|---------|---------|---------|---------|---------|--------|---------|---------|----------|---------|
-| Claude API | `claude-fable-5-1` | `claude-mythos-5-1` | `claude-opus-5-5` | `claude-sonnet-5-5` | `claude-fable-5` | `claude-opus-5` | `claude-opus-4-8` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5-20251001` |
-| AWS Bedrock | `anthropic.claude-fable-5-1`※ | 제한 제공 | `anthropic.claude-opus-5-5`※ | `anthropic.claude-sonnet-5-5`※ | `anthropic.claude-fable-5` | `anthropic.claude-opus-5`※ | `anthropic.claude-opus-4-8` | `anthropic.claude-sonnet-5` | `anthropic.claude-sonnet-4-6` | `anthropic.claude-haiku-4-5-20251001-v1:0` |
-| Vertex AI (Google managed) | `claude-fable-5-1`※ | 제한 제공 | `claude-opus-5-5`※ | `claude-sonnet-5-5`※ | `claude-fable-5` | `claude-opus-5`※ | `claude-opus-4-8` | `claude-sonnet-5` | `claude-sonnet-4-6` | `claude-haiku-4-5@20251001` |
-| Google Cloud (Anthropic managed) ★ | `claude-fable-5-1` | - | `claude-opus-5-5` | `claude-sonnet-5-5` | - | - | - | - | - | - |
+| 플랫폼 | Fable 5.1 | Mythos 5.1 | Opus 5.5 | Sonnet 5.5 | Haiku 5.5 | Fable 5 | Opus 5 | Opus 4.8 | Sonnet 5 | Sonnet 4.6 |
+|--------|---------|---------|---------|---------|---------|--------|--------|---------|---------|----------|
+| Claude API | `claude-fable-5-1` | `claude-mythos-5-1` | `claude-opus-5-5` | `claude-sonnet-5-5` | `claude-haiku-5-5` | `claude-fable-5` | `claude-opus-5` | `claude-opus-4-8` | `claude-sonnet-5` | `claude-sonnet-4-6` |
+| AWS Bedrock | `anthropic.claude-fable-5-1`※ | 제한 제공 | `anthropic.claude-opus-5-5`※ | `anthropic.claude-sonnet-5-5`※ | `anthropic.claude-haiku-5-5` | `anthropic.claude-fable-5` | `anthropic.claude-opus-5`※ | `anthropic.claude-opus-4-8` | `anthropic.claude-sonnet-5` | `anthropic.claude-sonnet-4-6` |
+| Vertex AI (Google managed) | `claude-fable-5-1`※ | 제한 제공 | `claude-opus-5-5`※ | `claude-sonnet-5-5`※ | `claude-haiku-5-5` | `claude-fable-5` | `claude-opus-5`※ | `claude-opus-4-8` | `claude-sonnet-5` | `claude-sonnet-4-6` |
+| Google Cloud (Anthropic managed) ★ | `claude-fable-5-1` | - | `claude-opus-5-5` | `claude-sonnet-5-5` | `claude-haiku-5-5` | - | - | - | - | - |
+| Microsoft Foundry | `claude-fable-5-1` | - | `claude-opus-5-5` | `claude-sonnet-5-5` | `claude-haiku-5-5` | - | - | - | - | - |
+| Claude Platform on AWS | `claude-fable-5-1` | - | `claude-opus-5-5` | `claude-sonnet-5-5` | `claude-haiku-5-5` | - | - | - | - | - |
 
 ---
 
@@ -58,6 +61,7 @@
 
 | 모델 | API ID | 상태 |
 |------|--------|------|
+| Claude Haiku 4.5 | `claude-haiku-4-5-20251001` | 활성 (레거시, Haiku 5.5로 대체) |
 | Claude Opus 4.6 | `claude-opus-4-6` | 활성 |
 | Claude Sonnet 4.5 | `claude-sonnet-4-5-20250929` | ⚠️ 은퇴 예고 (2026-11-30) |
 | Claude Opus 4.5 | `claude-opus-4-5-20251101` | 활성 |

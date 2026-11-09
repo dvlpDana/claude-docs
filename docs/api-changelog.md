@@ -1,7 +1,21 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-11-02  
+> 마지막 업데이트: 2026-11-09  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
+
+---
+
+## 2026년 11월
+
+### Claude Code CLI (2026-11-09 싱크 기준 최신 버전)
+
+> 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+
+| 버전 | 주요 변경 |
+|------|---------|
+| **v2.1.319** | Auto mode 서버 측 검사 동작 변경 (텔레메트리·피처플래그 비활성 환경에서 허용/거부, 기존 내장 분류기 폴백 없음; `CLAUDE_CODE_AUTO_MODE_SERVER=0`으로 유지 가능); MCP 태스크 터미널 지원 추가 (태스크 MCP 툴 호출 즉시 배경 이동 후 완료 시 결과 전달; `CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND=1`로 비활성화); `permissions.denyInsteadOfPrompting` 설정 추가 (권한 프롬프트 대기 대신 거부 후 턴 계속); `/claude-api latency-optimize` 추가 (Claude API 코드 지연 원인 분석 및 빠른 설정 테스트); `CLAUDE_CODE_DISABLE_FEATURE_FLAGS` 환경변수 추가 (텔레메트리 유지하며 피처플래그 페칭 중단); `/usage`에 오늘·이번 주·이번 달 지출 추가 (Claude apps 게이트웨이 무한도 개발자); 게이트웨이 `admin.pooled_conflict_rule`·`admin.pooled_priority_order` 추가; `login_notice` 게이트웨이 설정 추가; 70+ 버그 수정 (MCP 구버전 핸드셰이크 연결 실패·자동 허용 훅 세션 이동 후 소실·`HEAD` 이름 파일로 diff 로드 실패·자동완성 디스플레이 등) |
+| **v2.1.318** | `assume_role` on `mantle` 게이트웨이 업스트림 추가 (다른 AWS 계정 역할 및 개발자별 비용 귀속); mod `$.model.fork`에 `effort` 옵션 추가; claude.ai 로그인 만료 10일 전 `claude -p` stderr 경고·`loginExpiresAt` 필드 추가; 네트워크 홈 디렉토리 `~/.claude.json`·설정·로그인 저장 안정성 대폭 개선; `--continue` 잘못된 툴 호출 재시도 후 이전 대화 소실 회귀 수정 (2.1.314); macOS 다수 Bash 명령 세션 메모리 증가·멈춤 수정; Node 추가 CA 번들 불량 시 연결 전체 실패 수정; MCP 도구 로드 전 호출 시 입력 스키마 반환 개선; 50+ 버그 수정 (클라우드 세션·워크플로우 재개·게이트웨이 등) |
+| **v2.1.317** | 클라우드 예약 작업 불필요한 커넥터 포함 경고 추가 (`/schedule`); 웹/셸 툴 호출이 계정 이메일 전송 시 확인 요청 추가; `onFailure: "block"` Agent SDK 훅 콜백 옵션 추가; Claude apps 게이트웨이 `GET /v1/organizations/analytics/cost` 비용 보고서 API 추가; `CLAUDE_CODE_DISABLE_NESTED_SESSION_ID` 추가 (셀프 호스팅 러너 내 `claude -p`가 부모 세션 ID 사용); LLM 게이트웨이 403·422 응답으로 auto mode 매 턴 실패 수정; 프로젝트 `effortLevel` 설정 미적용 수정; 40+ 버그 수정 (MCP·예약 작업·세션·OTel 등) |
 
 ---
 
