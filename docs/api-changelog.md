@@ -1,18 +1,24 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-11-09  
+> 마지막 업데이트: 2026-11-16  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 11월
 
-### Claude Code CLI (2026-11-09 싱크 기준 최신 버전)
+### 2026-11-09
+- **Claude Fable 5.2** (`claude-fable-5-2`) 출시 — 새 기본 Fable 모델. 1M 컨텍스트, 128k 출력. $8/$40/MTok (Fable 5.1 대비 20% 저렴). 캐시 읽기 $0.20/MTok. Fast Mode $16/$80/MTok. 초기 테스트에서 Fable 5.1 대비 약 55% 감소한 블록률. 항상 켜지는 Adaptive Thinking.
+- **Claude Mythos 5.2** (`claude-mythos-5-2`) 출시 — Fable 5.2와 동일 사양·가격. Anthropic 인증 조직(사이버 검증 프로그램 등) 대상 제한 제공. 배치 처리 $4/$20/MTok.
+
+### Claude Code CLI (2026-11-16 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.325** | zstd 압축 응답 디코딩 보안 수정; Code Mode 관련 버그 수정 (워크트리 경로 처리·`~` 경로 프로젝트 외부 쓰기 등); 샌드박스 보안 강화 (`.claude` 설정 파일 보호·워크트리 공유 git 폴더 보호); 아티팩트 외부 공개 여부 자동 모드 판단 수정; 다수 권한 규칙 버그 수정 (복합 Bash 명령 허용 갭·특정 Bash deny 규칙 미적용·`rm` 폴더 판단 오류); MCP 연결·OTel·예약 작업·자격증명 격리 다수 수정; [VSCode] 모델 선택 체크·노력 선택기·로그인 화면 개선; [Claude Tag] 아티팩트 링크 카드 수정 |
+| **v2.1.323** | **Code Mode 추가** (실험적 옵트인 — Claude가 JavaScript로 도구 호출을 작성; https://code.claude.com/docs/en/code-mode 참고); 플러그인 `plugin.json`에 `engines["claude-code"]` 추가 (버전 범위 외 플러그인 설치·로드 차단); `claude plugin validate`에 TypeScript 훅 모듈 타입 체크 추가; Artifact 툴 `.docx` 에셋 업로드 지원; `CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES` 환경변수 추가 (서브에이전트 진행 요약·요청 비활성화); 다수 보안·버그 수정 (컨텍스트 버그·MCP 인증·권한 프롬프트·플러그인 등); [VSCode] 프롬프트 제안 추가 (Tab 수락); [VSCode] Console 로그인 (API 키 없는 방식) |
 | **v2.1.319** | Auto mode 서버 측 검사 동작 변경 (텔레메트리·피처플래그 비활성 환경에서 허용/거부, 기존 내장 분류기 폴백 없음; `CLAUDE_CODE_AUTO_MODE_SERVER=0`으로 유지 가능); MCP 태스크 터미널 지원 추가 (태스크 MCP 툴 호출 즉시 배경 이동 후 완료 시 결과 전달; `CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND=1`로 비활성화); `permissions.denyInsteadOfPrompting` 설정 추가 (권한 프롬프트 대기 대신 거부 후 턴 계속); `/claude-api latency-optimize` 추가 (Claude API 코드 지연 원인 분석 및 빠른 설정 테스트); `CLAUDE_CODE_DISABLE_FEATURE_FLAGS` 환경변수 추가 (텔레메트리 유지하며 피처플래그 페칭 중단); `/usage`에 오늘·이번 주·이번 달 지출 추가 (Claude apps 게이트웨이 무한도 개발자); 게이트웨이 `admin.pooled_conflict_rule`·`admin.pooled_priority_order` 추가; `login_notice` 게이트웨이 설정 추가; 70+ 버그 수정 (MCP 구버전 핸드셰이크 연결 실패·자동 허용 훅 세션 이동 후 소실·`HEAD` 이름 파일로 diff 로드 실패·자동완성 디스플레이 등) |
 | **v2.1.318** | `assume_role` on `mantle` 게이트웨이 업스트림 추가 (다른 AWS 계정 역할 및 개발자별 비용 귀속); mod `$.model.fork`에 `effort` 옵션 추가; claude.ai 로그인 만료 10일 전 `claude -p` stderr 경고·`loginExpiresAt` 필드 추가; 네트워크 홈 디렉토리 `~/.claude.json`·설정·로그인 저장 안정성 대폭 개선; `--continue` 잘못된 툴 호출 재시도 후 이전 대화 소실 회귀 수정 (2.1.314); macOS 다수 Bash 명령 세션 메모리 증가·멈춤 수정; Node 추가 CA 번들 불량 시 연결 전체 실패 수정; MCP 도구 로드 전 호출 시 입력 스키마 반환 개선; 50+ 버그 수정 (클라우드 세션·워크플로우 재개·게이트웨이 등) |
 | **v2.1.317** | 클라우드 예약 작업 불필요한 커넥터 포함 경고 추가 (`/schedule`); 웹/셸 툴 호출이 계정 이메일 전송 시 확인 요청 추가; `onFailure: "block"` Agent SDK 훅 콜백 옵션 추가; Claude apps 게이트웨이 `GET /v1/organizations/analytics/cost` 비용 보고서 API 추가; `CLAUDE_CODE_DISABLE_NESTED_SESSION_ID` 추가 (셀프 호스팅 러너 내 `claude -p`가 부모 세션 ID 사용); LLM 게이트웨이 403·422 응답으로 auto mode 매 턴 실패 수정; 프로젝트 `effortLevel` 설정 미적용 수정; 40+ 버그 수정 (MCP·예약 작업·세션·OTel 등) |
