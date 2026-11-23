@@ -1,22 +1,34 @@
 # Claude API 릴리즈 노트
 
-> 마지막 업데이트: 2026-11-16  
+> 마지막 업데이트: 2026-11-23  
 > 소스: https://platform.claude.com/docs/en/release-notes/overview
 
 ---
 
 ## 2026년 11월
 
+### 2026-11-17
+- **연결 결제(Linked billing) 베타 출시** (`user-profiles-billing-2026-10-01` 베타 헤더) — 고객이 본인의 Claude 조직을 통해 앱 내 Claude 사용량을 직접 결제 가능. 각 `/v1/messages` 또는 `/v1/chat/completions` 요청에 `billing_policy` 설정으로 결제 주체 선택. Claude Console에서 고객이 지출 한도 설정·앱 연결 해제 가능. Anthropic에 직접 API 사용료를 지불하는 조직 고객에 한해 작동.
+
+### 2026-11-16
+- **텍스트 워터마크 확장** — Claude Opus 4.6, Opus 4.5, Sonnet 4.5, Haiku 4.5 생성 텍스트에 Anthropic 텍스트 워터마크 적용 (지원 플랫폼 한정). `temperature`·`top_p`·`top_k`를 기본값 외로 설정 시 워터마크 미적용 가능.
+- **조직 웹훅 신규 이벤트 2종 추가** — `external_key.failed` (고객 관리 암호화 키 서비스가 반복 거부 시), `external_key.recovered` (키 정상 복구 시). 조직 웹훅 베타에 추가.
+
+### 2026-11-12
+- **자체 호스팅 Claude Managed Agents 출시** — Managed Agents 서비스 전체를 자체 인프라에서 실행 가능. 에이전트·세션·세션 이력 직접 저장. 서버는 선택한 프로바이더(기본: Anthropic)에 모델 요청 전송. 접근 요청: Anthropic 계정팀 문의.
+
 ### 2026-11-09
 - **Claude Fable 5.2** (`claude-fable-5-2`) 출시 — 새 기본 Fable 모델. 1M 컨텍스트, 128k 출력. $8/$40/MTok (Fable 5.1 대비 20% 저렴). 캐시 읽기 $0.20/MTok. Fast Mode $16/$80/MTok. 초기 테스트에서 Fable 5.1 대비 약 55% 감소한 블록률. 항상 켜지는 Adaptive Thinking.
 - **Claude Mythos 5.2** (`claude-mythos-5-2`) 출시 — Fable 5.2와 동일 사양·가격. Anthropic 인증 조직(사이버 검증 프로그램 등) 대상 제한 제공. 배치 처리 $4/$20/MTok.
 
-### Claude Code CLI (2026-11-16 싱크 기준 최신 버전)
+### Claude Code CLI (2026-11-23 싱크 기준 최신 버전)
 
 > 소스: https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 
 | 버전 | 주요 변경 |
 |------|---------|
+| **v2.1.330** | 엔터프라이즈 Admin Console 조직 로그인 지원; **easel 내장 모드 추가** (차트 자동 생성 — Pro/Max/Team/Enterprise, macOS·Linux); `CLAUDE_CODE_FULL_SIGN_IN_LINK=1` 추가; 셀프 호스팅 러너 `--start-dir`/`SELF_HOSTED_RUNNER_START_DIR` 추가; `/loop`·예약 작업 최대 **7일→30일** 연장; `rm` 루트·홈·최상위 폴더 승인 요청 강화; `deniedMcpServers` 이름 항목이 동일 URL의 다른 커넥터에 영향 안 주도록 변경; Code Mode 대규모 버그 수정 (이미지·PDF 인식, 메모리 등); 2.1.329의 `max_tokens` 초과 자동 재시도 복원; [VSCode] `/fork`·`/workflows` 추가, 새 설정 3종(`escapeStopsClaude`·`pinPrompt`·`contextUsageThreshold`); 다수 셀프 호스팅 러너·MCP·Code Mode 버그 수정 |
+| **v2.1.329** | 신뢰 대화상자 훅 선언 위치 경고 추가; `/tasks`에 예약 작업·`/loop` 웨이크업·목표·포크 표시 추가; `/mcp` 서버 페이지에 "Server message" 행 추가; `/status`에 "Marketplace auto-update" 행 추가; OTel 활성 상태에서 Code Mode 켜기 지원; `~/.claude.json` 기본값 초기화 버그 수정; macOS 반복 로그아웃 수정; Code Mode 메모리 누수·완료 편집 숨김 수정; `/code-review <pr number>` 잘못된 브랜치 리뷰 수정; MCP `application/octet-stream` PDF·이미지 저장 오류 수정; 다수 버그 수정 |
 | **v2.1.325** | zstd 압축 응답 디코딩 보안 수정; Code Mode 관련 버그 수정 (워크트리 경로 처리·`~` 경로 프로젝트 외부 쓰기 등); 샌드박스 보안 강화 (`.claude` 설정 파일 보호·워크트리 공유 git 폴더 보호); 아티팩트 외부 공개 여부 자동 모드 판단 수정; 다수 권한 규칙 버그 수정 (복합 Bash 명령 허용 갭·특정 Bash deny 규칙 미적용·`rm` 폴더 판단 오류); MCP 연결·OTel·예약 작업·자격증명 격리 다수 수정; [VSCode] 모델 선택 체크·노력 선택기·로그인 화면 개선; [Claude Tag] 아티팩트 링크 카드 수정 |
 | **v2.1.323** | **Code Mode 추가** (실험적 옵트인 — Claude가 JavaScript로 도구 호출을 작성; https://code.claude.com/docs/en/code-mode 참고); 플러그인 `plugin.json`에 `engines["claude-code"]` 추가 (버전 범위 외 플러그인 설치·로드 차단); `claude plugin validate`에 TypeScript 훅 모듈 타입 체크 추가; Artifact 툴 `.docx` 에셋 업로드 지원; `CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES` 환경변수 추가 (서브에이전트 진행 요약·요청 비활성화); 다수 보안·버그 수정 (컨텍스트 버그·MCP 인증·권한 프롬프트·플러그인 등); [VSCode] 프롬프트 제안 추가 (Tab 수락); [VSCode] Console 로그인 (API 키 없는 방식) |
 | **v2.1.319** | Auto mode 서버 측 검사 동작 변경 (텔레메트리·피처플래그 비활성 환경에서 허용/거부, 기존 내장 분류기 폴백 없음; `CLAUDE_CODE_AUTO_MODE_SERVER=0`으로 유지 가능); MCP 태스크 터미널 지원 추가 (태스크 MCP 툴 호출 즉시 배경 이동 후 완료 시 결과 전달; `CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND=1`로 비활성화); `permissions.denyInsteadOfPrompting` 설정 추가 (권한 프롬프트 대기 대신 거부 후 턴 계속); `/claude-api latency-optimize` 추가 (Claude API 코드 지연 원인 분석 및 빠른 설정 테스트); `CLAUDE_CODE_DISABLE_FEATURE_FLAGS` 환경변수 추가 (텔레메트리 유지하며 피처플래그 페칭 중단); `/usage`에 오늘·이번 주·이번 달 지출 추가 (Claude apps 게이트웨이 무한도 개발자); 게이트웨이 `admin.pooled_conflict_rule`·`admin.pooled_priority_order` 추가; `login_notice` 게이트웨이 설정 추가; 70+ 버그 수정 (MCP 구버전 핸드셰이크 연결 실패·자동 허용 훅 세션 이동 후 소실·`HEAD` 이름 파일로 diff 로드 실패·자동완성 디스플레이 등) |
